@@ -20,3 +20,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+.uslugi{
+    text-underline-offset:initial;
+    font-size: 58px;
+    color: #fc4201;
+    font-family: Mistral;
+    text-decoration: none;
+}
+.pages{
+    font-size: 36px;
+    font-family:'Comic Sans MS';
+}
