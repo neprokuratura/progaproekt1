@@ -15,7 +15,7 @@ namespace WebApplication1.Models
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=123;Username=postgres;Password=123");
+			optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Durka;Username=postgres;Password=12345678");
 		}
 	}
 }
