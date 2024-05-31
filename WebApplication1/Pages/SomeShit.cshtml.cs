@@ -25,5 +25,9 @@ namespace WebApplication1.Pages
             _context.SaveChanges();
             return RedirectToPage();
         }
+        public void OnDialog()
+        {
+            ;
+        }
     }
 }

@@ -26,8 +26,15 @@ body {
     color: #fc4201;
     font-family: Mistral;
     text-decoration: none;
+    position:relative;
+    right: 15%;
 }
 .pages{
     font-size: 36px;
     font-family:'Comic Sans MS';
+}
+.cheburashka {
+    position:initial;
+    align-self:initial;
+  
 }
