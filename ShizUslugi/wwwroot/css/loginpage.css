@@ -44,7 +44,7 @@ body {
         -moz-box-sizing: content-box;
         box-sizing: content-box;
         left: 142px;
-        top: 0px;
+        top: 35px;
     }
 .loginfield {
     position: absolute;
@@ -118,4 +118,8 @@ body {
     top: 405px;
     color: #1149FC;
     left: 108px;
+}
+
+.loginwindow .passwordfield p {
+    color: #D70003;
 }

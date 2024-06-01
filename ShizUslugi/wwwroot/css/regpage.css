@@ -1,0 +1,298 @@
+@charset "utf-8";
+@import url("MISTRAL/stylesheet.css");
+
+div.loginfield
+{
+    clear: none;
+    float: none;
+    position: relative;
+
+	
+}
+body {
+    background-color: #E0E7FF;
+}
+.loginwindow {
+    float: none;
+    border-width: thin;
+    border-style: none;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    position: relative;
+    width: 350px;
+    height: 800px;
+    margin: 0 auto;
+    top: 50px;
+}
+.shizregisterref {
+    position: relative;
+    right: 20px;
+    top: 32px;
+
+
+}
+
+.logo {
+    position: absolute;
+    width: 300px;
+    border-width: thin;
+    border-style: none;
+    left: 25px;
+
+}
+.logo p {
+    color: #D84616;
+    text-align: left;
+    font-family: MISTRAL;
+    font-size: 33pt;
+    font-weight: normal;
+    position: absolute;
+    float: right;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    left: 142px;
+    top: 35px;
+}
+.loginfield {
+    position: absolute;
+    top: 142px;
+    left: 63px;
+}
+.loginwindow .loginfield input {
+    width: 225px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 22px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: #E9E9E9;
+    border: thin solid #E4E4E4;
+    position: static;
+}
+
+.namefield {
+    position: absolute;
+    top: 290px;
+    left: 63px;
+}
+.loginwindow .namefield input {
+    width: 225px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 22px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: #E9E9E9;
+    border: thin solid #E4E4E4;
+    position: static;
+}
+
+.surnamefield {
+    position: absolute;
+    top: 360px;
+    left: 63px;
+}
+.loginwindow .surnamefield input {
+    width: 225px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 22px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: #E9E9E9;
+    border: thin solid #E4E4E4;
+    position: static;
+}
+
+.thirdnamefield {
+    position: absolute;
+    top: 430px;
+    left: 63px;
+}
+.loginwindow .thirdnamefield input {
+    width: 225px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 22px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: #E9E9E9;
+    border: thin solid #E4E4E4;
+    position: static;
+}
+
+.numberfield {
+    position: absolute;
+    top: 500px;
+    left: 63px;
+}
+.loginwindow .numberfield input {
+    width: 225px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 22px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: #E9E9E9;
+    border: thin solid #E4E4E4;
+    position: static;
+}
+
+.cabinetfield {
+    position: absolute;
+    top: 570px;
+    left: 63px;
+}
+.loginwindow .cabinetfield input {
+    width: 225px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 22px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: #E9E9E9;
+    border: thin solid #E4E4E4;
+    position: static;
+}
+
+.specfield {
+    position: absolute;
+    top: 640px;
+    left: 63px;
+}
+.loginwindow .specfield input {
+    width: 225px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 22px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: #E9E9E9;
+    border: thin solid #E4E4E4;
+    position: static;
+}
+
+
+.passwordfield {
+    position: absolute;
+    top: 210px;
+    left: 63px;
+}
+.loginwindow .passwordfield input {
+    width: 225px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 22px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: #E9E9E9;
+    border: thin solid #E4E4E4;
+}
+.loginbutton {
+    width: 230px;
+    height: 44px;
+    left: 63px;
+    position: absolute;
+    top: 306px;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: #1149FC;
+    color: #FFFFFF;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    border-width: thin;
+    border-radius: 5px;
+    border-style: none;
+}
+.loginbutton:hover{
+    background-color: #406CFD;
+}
+
+.loginbutton:active{
+    background-color: #1948E1;
+}
+.regbutton {
+    width: 230px;
+    height: 44px;
+    left: 63px;
+    position: absolute;
+    top: 710px;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: #1149FC;
+    color: #FFFFFF;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    border-width: thin;
+    border-radius: 5px;
+    border-style: none;
+}
+.regbutton:hover{
+    background-color: #406CFD;
+}
+
+.regbutton:active{
+    background-color: #1948E1;
+}
+.registerbutton {
+    text-decoration: none;
+    position: absolute;
+    top: 405px;
+    color: #1149FC;
+    left: 108px;
+}
+.loginwindow .alreadyhaveanaccount {
+    position: absolute;
+    top: 750px;
+    left: 90px;
+}
+.loginwindow .alreadyhaveanaccount .loginref {
+    position: absolute;
+    top: 16px;
+    left: 128px;
+}

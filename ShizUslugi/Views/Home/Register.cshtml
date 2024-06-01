@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<body>
+<link rel="stylesheet" href="~/css/loginpage.css" asp-append-version="true" />
+<div class = "loginwindow">
+<div class = "logo">
+	<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "125"/>
+	<p>ШизУслуги</p>
+</div>
+<form asp-controller="Home" asp-action="Register" method="post">
+<div class = "loginfield">
+	<input type="text" placeholder ="Логин">
+</div>
+<div class = "passwordfield">
+	<input type="password" placeholder ="Пароль">
+</div>
+<div class = "namefield">
+	<input type="text" placeholder ="Имя">
+</div>
+<div class = "surnamefield">
+	<input type="text" placeholder ="Фамилия">
+</div>
+<div class = "thirdnamefield">
+	<input type="text" placeholder ="Отчество (если есть)">
+</div>
+<div class = "numberfield">
+	<input type="text" placeholder ="Номер телефона">
+</div>
+<div class = "cabinetfield">
+	<input type="text" placeholder ="Кабинет">
+</div>
+	<div class = "specfield">
+	<input type="text" placeholder ="Ваша специализация">
+</div>
+<input name="button" type="submit" class="regbutton" id="button" value="Зарегистрироваться">
+</form>
+<div class = "alreadyhaveanaccount">
+	<p>Уже есть аккаунт?</p>
+	<form asp-controller="Home" asp-action="ToLogin" method="post">
+	<a href="zaglushka.html" class="loginref">Войти.</a>
+	</form>
+	<form asp-controller="Home" asp-action="GoToShizReg" method="post">
+<a href="zaglushka.html" class="shizregisterref">Зарегистрироваться как шизик.</a>
+</form>
+</div>
+</div>
+</body>
+</html>
