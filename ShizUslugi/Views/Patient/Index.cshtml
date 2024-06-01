@@ -1,0 +1,11 @@
+﻿@using ShizUslugi.VIewModels
+@model AllPatientViewModel
+@{
+}
+<h2>Палаты</h2>
+<ul> 
+	@foreach(var chamber in Model.Chambers)
+	{
+		<li>@chamber.type</li>
+	}
+</ul>
