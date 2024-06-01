@@ -5,7 +5,7 @@
 }
 
 <body>
-<link rel="stylesheet" href="~/css/regpage.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/loginpage.css" asp-append-version="true" />
 <div class = "loginwindow">
 <div class = "logo">
 	<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "125"/>
@@ -17,24 +17,24 @@
 </div>
 <div class = "passwordfield">
 	<input asp-for="password" type="password" placeholder ="Пароль">
-	<p>Неверный логин/пароль</p>
+				@if (!Model.IsUserExisting)
+				{
+					<div>
+						Пользователь не найден!
+					</div>
+				}
+				@if (!Model.IsPasswordCorrect)
+				{
+					<div>
+						Неправильный пароль!
+					</div>
+				}
 </div>
 <input name="button" type="submit"  class="loginbutton" id="button" value="Войти">
 </form>
 <form asp-controller="Home" asp-action="GoToReg" method="post">
-	<a class="registerbutton">Зарегистрироваться</a>
+			<a class="registerbutton asp-controller=" Home" asp-action="Register">Зарегистрироваться</a>
 </form>
 </div>
-	@if (!Model.IsUserExisting)
-	{
-		<div>
-			Пользователь не найден!
-		</div>
-	}
-	@if (!Model.IsPasswordCorrect)
-	{
-		<div>
-			Неправильный пароль!
-		</div>
-	}
+	
 </body>
