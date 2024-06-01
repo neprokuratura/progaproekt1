@@ -1,3 +1,5 @@
+using ShizUslugi.Models;
+
 namespace ShizUslugi
 {
 	public class Program
@@ -8,7 +10,8 @@ namespace ShizUslugi
 
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
-
+			builder.Services.AddMvc();
+			builder.Services.AddDbContext<ApplicationContext>();
 			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.

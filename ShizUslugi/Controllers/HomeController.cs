@@ -6,11 +6,14 @@ namespace ShizUslugi.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
+		private readonly ApplicationContext _context;
 
-		public HomeController(ILogger<HomeController> logger)
+		//private readonly ILogger<HomeController> _logger;
+
+		public HomeController( ApplicationContext context)
 		{
-			_logger = logger;
+			//_logger = logger;
+			_context = context;
 		}
 
 		public IActionResult Index()
@@ -22,15 +25,23 @@ namespace ShizUslugi.Controllers
 		{
 			return View();
 		}
-		public IActionResult LoginPage()
-		{
-			return View();
-		}
 
-		public IActionResult Test()
+		public IActionResult Test(string account, string password)
 		{
+			List<Account> accounts = _context.account.Where<Account>(a => a.login == account).ToList();
+			if(accounts.Count != 0)
+			{
+				if(password == accounts[0].password)
+				{
+
+				}
+			}
+			else
+			{
+
+			}
 			Console.WriteLine("jepa");
-			return View("Index");
+			return View();
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

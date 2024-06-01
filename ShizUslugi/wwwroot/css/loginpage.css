@@ -32,20 +32,20 @@ body {
     left: 25px;
 
 }
-.logo p {
-    color: #D84616;
-    text-align: left;
-    font-family: MISTRAL;
-    font-size: 33pt;
-    font-weight: normal;
-    position: absolute;
-    float: right;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    left: 142px;
-    top: 0px;
-}
+    .logo p {
+        color: #fc4201;
+        text-align: left;
+        font-family: MISTRAL;
+        font-size: 33pt;
+        font-weight: normal;
+        position: absolute;
+        float: right;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        left: 142px;
+        top: 0px;
+    }
 .loginfield {
     position: absolute;
     top: 142px;
