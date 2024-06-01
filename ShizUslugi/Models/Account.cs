@@ -5,7 +5,7 @@
 		public int id { get; set; }
 		public string login { get; set; }
 		public string password { get; set; }
-		public string status { get; set; }
+		public bool status { get; set; }
 
 
 	}

@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ShizUslugi.ViewModels
+@model AccountViewModel;
+@{
 	ViewData["Title"] = "LoginPage";
 }
 
@@ -9,15 +11,27 @@
 	<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "125"/>
 	<p>ШизУслуги</p>
 </div>
-<form asp-controller="Home" asp-action="Test" method="post">
+<form asp-controller="Home" asp-action="Index" method="post">
 <div class = "loginfield">
-	<input type="text" placeholder ="Логин">
+	<input asp-for="login" type="text" placeholder ="Логин">
 </div>
 <div class = "passwordfield">
-	<input type="password" placeholder ="Пароль">
+	<input asp-for="password" type="password" placeholder ="Пароль">
 </div>
 <input name="button" type="submit"  class="loginbutton" id="button" value="Войти">
 </form>
 	<a class="registerbutton">Зарегистрироваться</a>
 </div>
+	@if (!Model.IsUserExisting)
+	{
+		<div>
+			Пользователь не найден!
+		</div>
+	}
+	@if (!Model.IsPasswordCorrect)
+	{
+		<div>
+			Неправильный пароль!
+		</div>
+	}
 </body>

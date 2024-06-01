@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShizUslugi.Models;
+using ShizUslugi.ViewModels;
 using System.Diagnostics;
 
 namespace ShizUslugi.Controllers
@@ -18,30 +19,34 @@ namespace ShizUslugi.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+			var response = new AccountViewModel();
+			return View(response);
 		}
 
 		public IActionResult Privacy()
 		{
 			return View();
 		}
-
-		public IActionResult Test(string account, string password)
+		[HttpPost]
+		public IActionResult Index(AccountViewModel A)
 		{
-			List<Account> accounts = _context.account.Where<Account>(a => a.login == account).ToList();
+			List<Account> accounts = _context.account.Where<Account>(a => a.login == A.login).ToList();
 			if(accounts.Count != 0)
 			{
-				if(password == accounts[0].password)
+				if(A.password == accounts[0].password)
 				{
 
+				}
+				else
+				{
+					A.IsPasswordCorrect = false;
 				}
 			}
 			else
 			{
-
+				A.IsUserExisting = false;
 			}
-			Console.WriteLine("jepa");
-			return View();
+			return View(A);
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
