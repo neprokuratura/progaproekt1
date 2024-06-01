@@ -38,3 +38,127 @@ body {
     align-self:initial;
   
 }
+div.loginfield {
+    clear: none;
+    float: none;
+    position: relative;
+}
+
+body {
+    background-color: #E0E7FF;
+}
+
+.loginwindow {
+    float: none;
+    border-width: thin;
+    border-style: none;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    position: relative;
+    width: 350px;
+    height: 450px;
+    margin: 0 auto;
+    top: 50px;
+}
+
+.logo {
+    position: absolute;
+    width: 300px;
+    border-width: thin;
+    border-style: none;
+    left: 25px;
+}
+
+    .logo p {
+        color: #fc4201;
+        text-align: left;
+        font-family: MISTRAL;
+        font-size: 33pt;
+        font-weight: normal;
+        position: absolute;
+        float: right;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        right: 10%;
+        top: 10%;
+    }
+
+.loginfield {
+    position: absolute;
+    top: 142px;
+    left: 63px;
+}
+
+.loginwindow .loginfield input {
+    width: 225px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 26px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: #E9E9E9;
+    border: thin solid #E4E4E4;
+}
+
+.passwordfield {
+    position: absolute;
+    top: 210px;
+    left: 63px;
+}
+
+.loginwindow .passwordfield input {
+    width: 225px;
+    height: 44px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 26px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: #E9E9E9;
+    border: thin solid #E4E4E4;
+}
+
+.loginbutton {
+    width: 225px;
+    height: 44px;
+    left: 63px;
+    position: absolute;
+    top: 306px;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: #1149FC;
+    color: #FFFFFF;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    border-width: thin;
+    border-radius: 5px;
+    border-style: none;
+}
+
+    .loginbutton:hover {
+        background-color: #406CFD;
+    }
+
+    .loginbutton:active {
+        background-color: #1948E1;
+    }
+
+.registerbutton {
+    text-decoration: none;
+    position: absolute;
+    top: 405px;
+    color: #1149FC;
+    left: 108px;
+}
