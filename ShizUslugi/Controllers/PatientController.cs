@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShizUslugi.Models;
-using ShizUslugi.VIewModels;
+using ShizUslugi.ViewModels;
 
 namespace ShizUslugi.Controllers
 {

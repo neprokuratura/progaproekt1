@@ -1,5 +1,5 @@
 ﻿using ShizUslugi.Models;
-namespace ShizUslugi.VIewModels
+namespace ShizUslugi.ViewModels
 {
     public class AllPatientViewModel
     {
