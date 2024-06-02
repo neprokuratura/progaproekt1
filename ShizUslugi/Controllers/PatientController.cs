@@ -14,7 +14,7 @@ namespace ShizUslugi.Controllers
 		public IActionResult Index()
 		{
 			AllPatientViewModel data = new AllPatientViewModel();
-			data.Schedules = _context.schedule.ToList();
+			data.Schedules = _context.schedule.Where(a => a.patientid == StaticStuff.patient.id).ToList();
 			data.Doctors = _context.doctor.ToList();
 			data.patient = StaticStuff.patient;
 			return View(data);
