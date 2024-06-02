@@ -1,0 +1,41 @@
+﻿@using ShizUslugi.ViewModels;
+@model AllDoctorViewModel;
+@{
+}
+<div>Мои Пациенты</div>
+<table class=" = table">
+	<thead>
+		<tr>
+			<th>
+				<th>Имя</th>
+			<th>Фамилия</th>
+			<th>Отчество</th>
+			<th>Палата</th>
+			<th>Рейтинг Буйности</th>
+			</th>
+		</tr>
+		<tbody>
+			@foreach(Patient patient in Model.patients)
+			{
+				<tr>
+					<td>
+						@patient.name
+					</td>
+				<td>
+					@patient.surname
+				</td>
+				<td>
+					@patient.thirdname
+				</td>
+				<td>
+					@patient.chamber.type
+				</td>
+					<td>
+						@patient.rating
+					</td>
+
+				</tr>
+			}
+		</tbody>
+	</thead>
+</table>

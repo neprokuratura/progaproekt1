@@ -5,6 +5,7 @@ namespace ShizUslugi.VIewModels
     {
         public List<Doctor> Doctors { get; set; }
         public List<Schedule> Schedules { get; set; }
-        public Patient patient { get; set; }
+		public List<Chamber> chambers { get; set; }
+		public Patient patient { get; set; }
     }
 }
