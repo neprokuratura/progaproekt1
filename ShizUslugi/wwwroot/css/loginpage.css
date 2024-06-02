@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import url("MISTRAL/stylesheet.css");
+@import url("Nunito_Medium/stylesheet.css");
 
 div.loginfield
 {
@@ -139,7 +140,7 @@ body {
     margin-bottom: 0;
     top: 62px;
     color: #FF4700;
-    font-family: "ofont ru Nunito";
+    font-family: "Nunito Medium";
     font-size: 21pt;
     text-align: center;
     padding-top: 196px;
@@ -152,6 +153,36 @@ body {
     .mainbutton:active {
         background-color: #CFCFCF;
     }
+
+.mypatients {
+    position: absolute;
+    left: 611px;
+    top: 115px;
+}
+
+.schedule {
+    position: absolute;
+    left: 316px;
+    top: 115px;
+}
+
+.mypage {
+    position: absolute;
+    left: 21px;
+    top: 115px;
+}
+
+.shizmypage {
+    position: absolute;
+    left: 21px;
+    top: 115px;
+}
+
+.mydoctors {
+    position: absolute;
+    left: 611px;
+    top: 115px;
+}
 
 .mypatients .mainbutton {
     background-image: url(https://imageup.ru/img61/4835168/ava0shiz.png);
@@ -172,4 +203,26 @@ body {
     background-size: 190px auto;
     background-repeat: no-repeat;
     background-position: 48% 15%;
+}
+
+.mydoctors .mainbutton {
+    background-image: url(https://imageup.ru/img285/4835159/ava0.png);
+    background-size: 180px auto;
+    background-repeat: no-repeat;
+    background-position: 48% 15%;
+}
+
+.shizmypage .mainbutton {
+    background-image: url(https://imageup.ru/img61/4835168/ava0shiz.png);
+    background-size: 180px auto;
+    background-repeat: no-repeat;
+    background-position: 48% 15%;
+}
+
+.Greetings h1 {
+    color: #FF4700;
+    font-family: "Nunito Medium";
+    position: absolute;
+    left: 15px;
+    top: 60px
 }
