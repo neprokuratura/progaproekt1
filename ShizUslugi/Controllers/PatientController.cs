@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShizUslugi.Models;
+using ShizUslugi.ViewModels;
 using ShizUslugi.VIewModels;
 
 namespace ShizUslugi.Controllers
@@ -18,6 +19,13 @@ namespace ShizUslugi.Controllers
 			data.Doctors = _context.doctor.ToList();
 			data.patient = StaticStuff.patient;
 			return View(data);
+		}
+		public IActionResult MyDoctors()
+		{
+			AllDoctorViewModel model = new AllDoctorViewModel();
+			List<Doctor_Patient_id> dp = _context.doctor_and_patient.Where(a => a.doctorid == StaticStuff.doctor.id).ToList();
+
+			return View();
 		}
 	}
 }
