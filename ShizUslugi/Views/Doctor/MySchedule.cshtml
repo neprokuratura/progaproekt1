@@ -1,21 +1,20 @@
 ﻿@using ShizUslugi.ViewModels;
 @model AllDoctorViewModel;
 
-<div>Моё Расписание</div>
-<table class=" = table">
+<body>
+<link rel="stylesheet" href="~/css/schedule.css" asp-append-version="true" />
+<p class = "Header">Мои Пациенты</p>
+<table class = "table">
 	<thead>
 		<tr>
-			<th>
 			<th>Начало</th>
 			<th>Конец</th>
-			<th>Занятие</th>
-			<th>Пациент</th>
-			</th>
+			<th>Активность</th>
+			<th>Имя пациента</th>
 		</tr>
 	<tbody>
 			@foreach (Schedule schedule in Model.schedules)
 			{
-			<tr>
 				<td>
 						@schedule.starttime
 				</td>
@@ -29,8 +28,8 @@
 						@schedule.patient.name
 				</td>
 
-			</tr>
 			}
 	</tbody>
 	</thead>
 </table>
+</body>
