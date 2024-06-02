@@ -15,6 +15,7 @@
 	<tbody>
 			@foreach (Schedule schedule in Model.schedules)
 			{
+			<tr>
 				<td>
 						@schedule.starttime
 				</td>
@@ -27,7 +28,7 @@
 				<td>
 						@schedule.patient.name
 				</td>
-
+			</tr>
 			}
 	</tbody>
 	</thead>
