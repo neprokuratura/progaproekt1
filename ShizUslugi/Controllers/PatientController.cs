@@ -19,5 +19,19 @@ namespace ShizUslugi.Controllers
 			data.patient = StaticStuff.patient;
 			return View(data);
 		}
+		[HttpGet]
+		public IActionResult MySchedule()
+		{
+			AllPatientViewModel model = new AllPatientViewModel();
+			model.Schedules = _context.schedule.Where(b => b.patientid == StaticStuff.patient.id).ToList();
+			List<Doctor> p = new List<Doctor>();
+
+			foreach (var v in model.Schedules)
+			{
+				p.Add(_context.doctor.Where<Doctor>(c => c.id == v.doctorid).ToList()[0]);
+			}
+			model.Doctors = p;
+			return View(model);
+		}
 	}
 }
