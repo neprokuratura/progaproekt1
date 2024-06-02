@@ -9,7 +9,6 @@ namespace ShizUslugi.Models
 		public DbSet<Diagnosis> diagnosis { get; set; }
 		public DbSet<Doctor> doctor { get; set; }
 		public DbSet<Doctor_Patient_id> doctor_and_patient { get; set; }
-		public DbSet<Drug> drug { get; set; }
 		public DbSet<Patient> patient { get; set; }
 		public DbSet<Patient_Diagnosis> patient_and_diagnosis { get; set; }
 		public DbSet<Schedule> schedule { get; set; }

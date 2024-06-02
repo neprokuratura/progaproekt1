@@ -31,5 +31,18 @@ namespace ShizUslugi.Controllers
 			model.Doctors= doctors;
 			return View(model);
 		}
+		public IActionResult MyDiagnoses()
+		{
+            AllPatientViewModel model = new AllPatientViewModel();
+            List<Patient_Diagnosis> pd = _context.patient_and_diagnosis.Where(a => a.patientid == StaticStuff.patient.id).ToList();
+            List<Diagnosis> diagnoses= new List<Diagnosis>();
+            foreach (var v in pd)
+            {
+                diagnoses.Add(_context.diagnosis.Where(d => d.id == v.diagnosisid).ToList()[0]);
+            }
+            model.diagnosis= diagnoses;
+            return View(model);
+        }
 	}
+	
 }
