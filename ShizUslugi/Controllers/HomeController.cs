@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ShizUslugi.Models;
 using ShizUslugi.ViewModels;
+using ShizUslugi.VIewModels;
 using System.Diagnostics;
 using System.Reflection.Metadata.Ecma335;
 
@@ -36,7 +37,8 @@ namespace ShizUslugi.Controllers
 			{
 				if(A.password == accounts[0].password)
 				{
-					return accounts[0].status ? RedirectToAction("Index", "Doctor") : RedirectToAction("Index", "Patient");
+					StaticStuff.patient = _context.patient.Where<Patient>(p => p.accountid == accounts[0].id).ToList()[0];
+					return accounts[0].status ? RedirectToAction("Index", "Doctor") : RedirectToAction("Index", "Patient"); ;
 				}
 				else
 				{

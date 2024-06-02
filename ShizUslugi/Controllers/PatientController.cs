@@ -16,6 +16,7 @@ namespace ShizUslugi.Controllers
 			AllPatientViewModel data = new AllPatientViewModel();
 			data.Schedules = _context.schedule.ToList();
 			data.Doctors = _context.doctor.ToList();
+			data.patient = StaticStuff.patient;
 			return View(data);
 		}
 	}
