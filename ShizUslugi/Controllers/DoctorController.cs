@@ -22,17 +22,14 @@ namespace ShizUslugi.Controllers
 		{
 			AllDoctorViewModel model = new AllDoctorViewModel();
 			List<Patient> p	= new List<Patient>();
-			int i = 0;
 			List<Doctor_Patient_id> a = _context.doctor_and_patient.Where(a => a.doctorid == StaticStuff.doctor.id).ToList();
 			foreach (var v in a)
 			{
 				p.Add(_context.patient.Where<Patient>(b => b.id == v.patientid).ToList()[0]);
-				i++;
 			}
 			model.chambers = _context.chamber.ToList();
 			model.patients = p;
 			return View(model);
-
 		}
 	}
 }
