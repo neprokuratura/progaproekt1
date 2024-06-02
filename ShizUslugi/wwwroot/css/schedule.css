@@ -1,0 +1,30 @@
+@charset "utf-8";
+@import url("Nunito_Medium/stylesheet.css");
+
+body {
+	background-color: #E0E7FF;
+}
+.table {
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    position: relative;
+    width:100%;
+}
+.Header {
+    font-family: "Nunito Medium";
+    color: #FC4201;
+    font-size: 25pt;
+    text-align: left;
+    text-indent: 0px;
+    margin-bottom: 5px;
+}
+
+tbody tr td {
+    text-align: center;
+    font-family: "Nunito Medium";
+
+}
+thead tr th {
+    text-align: center;
+    font-family: "Nunito Medium";
+}
