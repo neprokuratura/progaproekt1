@@ -2,7 +2,7 @@
 {
 	public class Patient : Person
 	{
-		public int chamber_id {get;set;}
+		public int chamberid {get;set;}
 		public int rating { get; set; }
 
 		public Chamber chamber { get; set;}	

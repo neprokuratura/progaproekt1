@@ -14,7 +14,8 @@ namespace ShizUslugi.Controllers
 		public IActionResult Index()
 		{
 			AllPatientViewModel data = new AllPatientViewModel();
-			data.Chambers = _context.chamber.ToList();
+			data.Schedules = _context.schedule.ToList();
+			data.Doctors = _context.doctor.ToList();
 			return View(data);
 		}
 	}

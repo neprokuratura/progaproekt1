@@ -3,9 +3,7 @@
 	public class Doctor : Person
 	{
 		public string specialization { get; set; }
-		public int cabinet_number { get; set; }
-		public int phone_number { get; set; }
-
-		
+		public int cabinetnumber { get; set; }
+		public string phonenumber { get; set; }
 	}
 }

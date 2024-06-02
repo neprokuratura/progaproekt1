@@ -4,8 +4,10 @@
 }
 <h2>Палаты</h2>
 <ul> 
-	@foreach(var chamber in Model.Chambers)
+	@foreach(var schedule in Model.Schedules)
 	{
-		<li>@chamber.type</li>
+		<li>@schedule.starttime</li>
+		<li>@schedule.endtime</li>
+		<li>@schedule.doctor.name</li>
 	}
 </ul>
