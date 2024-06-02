@@ -16,7 +16,7 @@ namespace ShizUslugi.Controllers
 			//_logger = logger;
 			_context = context;
 		}
-
+		[HttpGet]
 		public IActionResult Index()
 		{
 			var response = new AccountViewModel();
@@ -48,9 +48,11 @@ namespace ShizUslugi.Controllers
 			}
 			return View(A);
 		}
+		[HttpGet]
 		public IActionResult Register()
 		{
-			return View();
+			var response = new RegisterViewModel();
+			return View(response);
 		}
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
