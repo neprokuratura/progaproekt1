@@ -1,0 +1,36 @@
+﻿@using ShizUslugi.ViewModels;
+@model AllDoctorViewModel;
+
+<div>Моё Расписание</div>
+<table class=" = table">
+	<thead>
+		<tr>
+			<th>
+			<th>Начало</th>
+			<th>Конец</th>
+			<th>Занятие</th>
+			<th>Пациент</th>
+			</th>
+		</tr>
+	<tbody>
+			@foreach (Schedule schedule in Model.schedules)
+			{
+			<tr>
+				<td>
+						@schedule.starttime
+				</td>
+				<td>
+						@schedule.endtime
+				</td>
+				<td>
+						@schedule.action
+				</td>
+				<td>
+						@schedule.patient.name
+				</td>
+
+			</tr>
+			}
+	</tbody>
+	</thead>
+</table>
