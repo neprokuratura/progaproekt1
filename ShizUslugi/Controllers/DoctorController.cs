@@ -12,7 +12,9 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Index()
 		{
-			return View();
+			AllDoctorViewModel model = new AllDoctorViewModel();
+			model.doctor = StaticStuff.doctor;
+			return View(model);
 		}
 	}
 }

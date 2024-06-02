@@ -37,8 +37,16 @@ namespace ShizUslugi.Controllers
 			{
 				if(A.password == accounts[0].password)
 				{
-					StaticStuff.patient = _context.patient.Where<Patient>(p => p.accountid == accounts[0].id).ToList()[0];
-					return accounts[0].status ? RedirectToAction("Index", "Doctor") : RedirectToAction("Index", "Patient"); ;
+					if (accounts[0].status)
+					{
+						StaticStuff.doctor = _context.doctor.Where<Doctor>(d => d.accountid == accounts[0].id).ToList()[0];
+						return RedirectToAction("Index", "Doctor");
+					}
+					else
+					{
+						StaticStuff.patient = _context.patient.Where<Patient>(p => p.accountid == accounts[0].id).ToList()[0];
+						return  RedirectToAction("Index", "Patient");
+					}
 				}
 				else
 				{
