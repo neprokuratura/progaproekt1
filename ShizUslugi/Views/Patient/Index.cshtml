@@ -2,14 +2,19 @@
 @model AllPatientViewModel
 @{
 }
-<h2>Палаты</h2>
-<ul> 
-	@foreach(var schedule in Model.Schedules)
-	{
-		<li>@schedule.starttime</li>
-		<li>@schedule.endtime</li>
-		<li>@schedule.doctor.name</li>
+<body>
+	<link rel="stylesheet" href="~/css/loginpage.css" asp-append-version="true" />
+	<div class = "Greetings">
+		<h1> Добро пожаловать, @Model.patient.surname @Model.patient.name @Model.patient.thirdname</h1>
+	</div>
+	<div class = "mydoctors">
+	  <input type="submit" class = "mainbutton" value = "Мои врачи">
 
-	}
-	<div>Здравствуйте, дорогой(ая) @Model.patient.surname @Model.patient.name @Model.patient.thirdname!!!</div>
-</ul>
+	</div>
+	<div class = "schedule">
+			<input type="submit" class = "mainbutton" value = "Моё расписание">
+	</div>
+	<div class = "shizmypage">
+			<input type="submit" class = "mainbutton" value = "Личный кабинет">
+	</div>
+</body>
