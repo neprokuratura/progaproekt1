@@ -58,6 +58,22 @@ namespace ShizUslugi.Controllers
 			}
 			else return RedirectToAction("PatientWarning");
 		}
+		public IActionResult PatientDiagnoses(AllDoctorViewModel model)
+		{
+			if(StaticStuff.status)
+			{
+				List<Patient_Diagnosis> pd = _context.patient_and_diagnosis.Where(a => a.patientid == model.patient.id).ToList();
+				List<Diagnosis> diagnoses = new List<Diagnosis>();
+				foreach (var v in pd)
+				{
+					diagnoses.Add(_context.diagnosis.Where(d => d.id == v.diagnosisid).ToList()[0]);
+				}
+				model.diagnosis = diagnoses;
+				model.patient = _context.patient.Where(p => p.id == model.patient.id).ToList()[0];	
+				return View(model);
+			}
+            else return RedirectToAction("PatientWarning");
+        }
 		public IActionResult PatientWarning()
 		{
 			return View();

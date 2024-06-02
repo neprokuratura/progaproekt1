@@ -33,6 +33,12 @@
 					<td>
 						@patient.rating
 					</td>
+					<td>
+						<form asp-action="PatientDiagnoses" method ="get">
+							<input asp-for="patient.id" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
+						    <input name="button" type="submit" value= "посмотреть диагнозы" />
+                        </form>
+					</td>
 
 				</tr>
 			}

@@ -8,5 +8,7 @@ namespace ShizUslugi.ViewModels
 		public List<Patient> patients { get; set; }
 		public List<Chamber> chambers { get; set; }
 		public List<Schedule> schedules { get; set; }
-	}
+        public List<Diagnosis> diagnosis { get; set; }
+        public Patient patient { get; set; }
+    }
 }
