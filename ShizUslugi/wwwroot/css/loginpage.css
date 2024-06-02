@@ -123,3 +123,53 @@ body {
 .loginwindow .passwordfield p {
     color: #D70003;
 }
+
+.mainbutton {
+    float: none;
+    border-width: thin;
+    border-style: none;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    position: static;
+    width: 253px;
+    height: 271px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0;
+    top: 62px;
+    color: #FF4700;
+    font-family: "ofont ru Nunito";
+    font-size: 21pt;
+    text-align: center;
+    padding-top: 196px;
+}
+
+    .mainbutton:hover {
+        background-color: #CFCFCF;
+    }
+
+    .mainbutton:active {
+        background-color: #CFCFCF;
+    }
+
+.mypatients .mainbutton {
+    background-image: url(https://imageup.ru/img61/4835168/ava0shiz.png);
+    background-size: 180px auto;
+    background-repeat: no-repeat;
+    background-position: 48% 15%;
+}
+
+.mypage .mainbutton {
+    background-image: url(https://imageup.ru/img285/4835159/ava0.png);
+    background-size: 180px auto;
+    background-repeat: no-repeat;
+    background-position: 48% 15%;
+}
+
+.schedule .mainbutton {
+    background-image: url(https://imageup.ru/img50/4835165/chasy.jpg);
+    background-size: 190px auto;
+    background-repeat: no-repeat;
+    background-position: 48% 15%;
+}
