@@ -36,6 +36,7 @@ namespace ShizUslugi.Controllers
 			{
 				if(A.password == accounts[0].password)
 				{
+					StaticStuff.status = accounts[0].status;
 					if (accounts[0].status)
 					{
 						StaticStuff.doctor = _context.doctor.Where<Doctor>(d => d.accountid == accounts[0].id).ToList()[0];
