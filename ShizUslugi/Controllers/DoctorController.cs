@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ShizUslugi.Models;
 using ShizUslugi.ViewModels;
 namespace ShizUslugi.Controllers
@@ -20,15 +21,15 @@ namespace ShizUslugi.Controllers
 		public IActionResult MyPatients()
 		{
 			AllDoctorViewModel model = new AllDoctorViewModel();
-			List<int> pid = new List<int>();
 			List<Patient> p	= new List<Patient>();
 			int i = 0;
-			foreach (var v in _context.doctor_and_patient.Where(a => a.doctorid == StaticStuff.doctor.id))
+			List<Doctor_Patient_id> a = _context.doctor_and_patient.Where(a => a.doctorid == StaticStuff.doctor.id).ToList();
+			foreach (var v in a)
 			{
-				pid.Add(v.patientid);
-				p.Add(_context.patient.Where<Patient>(b => b.id == v.patientid).ToList()[i]);
+				p.Add(_context.patient.Where<Patient>(b => b.id == v.patientid).ToList()[0]);
 				i++;
 			}
+			model.chambers = _context.chamber.ToList();
 			model.patients = p;
 			return View(model);
 

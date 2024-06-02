@@ -10,7 +10,8 @@
 				<th>Имя</th>
 			<th>Фамилия</th>
 			<th>Отчество</th>
-
+			<th>Палата</th>
+			<th>Рейтинг Буйности</th>
 			</th>
 		</tr>
 		<tbody>
@@ -26,6 +27,13 @@
 				<td>
 					@patient.thirdname
 				</td>
+				<td>
+					@patient.chamber.type
+				</td>
+					<td>
+						@patient.rating
+					</td>
+
 				</tr>
 			}
 		</tbody>

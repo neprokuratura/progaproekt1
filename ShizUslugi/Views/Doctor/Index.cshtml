@@ -10,9 +10,9 @@
 		<h1> Добро пожаловать, @Model.doctor.surname @Model.doctor.name @Model.doctor.thirdname</h1>
 	</div>
 	<div class = "mypatients">
-		<><form action="MyPatients" method="get">
+		<form asp-action="MyPatients" method="get">
 			<input type="submit" class="mainbutton" value="Мои пациенты">
-			</form></>
+		</form>
 	</div>
 	<div class = "schedule">
 			<input type="submit" class = "mainbutton" value = "Моё расписание">
@@ -21,4 +21,3 @@
 			<input type="submit" class = "mainbutton" value = "Личный кабинет">
 	</div>
 </body>
-<div>Здравствуйте, дорогой(ая) @Model.doctor.surname @Model.doctor.name @Model.doctor.thirdname!!!</div>
