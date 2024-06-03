@@ -8,5 +8,6 @@ namespace ShizUslugi.Models
 		public static Doctor doctor { get; set; }
 		public static bool status {  get; set; }
 		public static AllDoctorViewModel doctormodel { get; set; }
+		public static List<Diagnosis> alldiagnoses { get; set; }
 	}
 }

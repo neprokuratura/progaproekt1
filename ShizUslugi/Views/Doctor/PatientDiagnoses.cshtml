@@ -1,6 +1,22 @@
 ﻿@using ShizUslugi.ViewModels;
 @model AllDoctorViewModel;
 <div>диагнозы @Model.patient.name</div>
+<form asp-action="AddPatientDiagnoses" method="post">
+<select asp-for="singlediagnosis.id" >
+	@foreach(Diagnosis diagnosis in StaticStuff.alldiagnoses)
+		{
+		<option value = "@diagnosis.id">
+			@diagnosis.name
+		</option>
+	}
+	<input name="button" type="submit" value="добавить диагноз" />
+</select>
+	<input asp-for="patient.id" style="visibility:hidden" readonly="true" value="@Model.patient.id" type="text" />
+</form>
+@if (Model.hasDiagnosis)
+{
+	<p>У пациента уже есть такой диагноз!</p>
+}
 <table class=" = table">
 	<thead>
 		<tr>

@@ -11,5 +11,6 @@ namespace ShizUslugi.ViewModels
         public List<Diagnosis> diagnosis { get; set; }
         public Patient patient { get; set; }
 		public Diagnosis singlediagnosis { get; set; }
+		public bool hasDiagnosis {  get; set; }
     }
 }
