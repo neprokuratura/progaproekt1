@@ -14,8 +14,6 @@ namespace ShizUslugi.Controllers
 		public IActionResult Index()
 		{
 			AllPatientViewModel data = new AllPatientViewModel();
-			data.Schedules = _context.schedule.Where(a => a.patientid == StaticStuff.patient.id).ToList();
-			data.Doctors = _context.doctor.ToList();
 			data.patient = StaticStuff.patient;
 			return View(data);
 		}
@@ -28,7 +26,7 @@ namespace ShizUslugi.Controllers
 			{
 				doctors.Add(_context.doctor.Where(d => d.id == v.doctorid).ToList()[0]);
 			}
-			model.Doctors= doctors;
+			model.doctors= doctors;
 			return View(model);
 		}
 		public IActionResult MyDiagnoses()
@@ -43,6 +41,25 @@ namespace ShizUslugi.Controllers
             model.diagnosis= diagnoses;
             return View(model);
         }
+		public IActionResult MyChamber()
+		{
+			AllPatientViewModel model= new AllPatientViewModel();
+			int chamber_id = _context.patient.Where(p => p.id == StaticStuff.patient.id).ToList()[0].chamberid;
+			model.chamber = _context.chamber.Where(c => c.id == chamber_id).ToList()[0];
+			return View(model);
+		}
+		public IActionResult MySchedule()
+		{
+			AllPatientViewModel model = new AllPatientViewModel();
+			model.schedules = _context.schedule.Where(b => b.patientid == StaticStuff.patient.id).ToList();
+			List<Doctor> d = new List<Doctor>();
+			foreach (var v in model.schedules)
+			{
+				d.Add(_context.doctor.Where(c => c.id == v.doctorid).ToList()[0]);
+			}
+			model.doctors = d;
+			return View(model);
+		}
 	}
 	
 }

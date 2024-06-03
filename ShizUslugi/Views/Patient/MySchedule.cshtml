@@ -1,0 +1,36 @@
+﻿@using ShizUslugi.ViewModels;
+@model AllPatientViewModel;
+
+<body>
+	<link rel="stylesheet" href="~/css/schedule.css" asp-append-version="true" />
+	<p class="Header">Мое Расписание</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Начало</th>
+				<th>Конец</th>
+				<th>Активность</th>
+				<th>Имя врача</th>
+			</tr>
+		<tbody>
+				@foreach (Schedule schedule in Model.schedules)
+				{
+				<tr>
+					<td>
+							@schedule.starttime
+					</td>
+					<td>
+							@schedule.endtime
+					</td>
+					<td>
+							@schedule.action
+					</td>
+					<td>
+							@schedule.doctor.name
+					</td>
+				</tr>
+				}
+		</tbody>
+		</thead>
+	</table>
+</body>
