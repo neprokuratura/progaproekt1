@@ -114,6 +114,14 @@ namespace ShizUslugi.Controllers
 			}
 			else return RedirectToAction("PatientWarning");
 		}
+		public IActionResult PatientChamber(AllDoctorViewModel model)
+		{
+			int chamber_id = _context.patient.Where(p => p.id == model.patient.id).ToList()[0].chamberid;
+			model.chamber = _context.chamber.Where(c => c.id == chamber_id).ToList()[0];
+			model.patients = _context.patient.Where(p => p.chamberid == chamber_id && p.id != model.patient.id).ToList();
+			model.patient = _context.patient.Where(p => p.id == model.patient.id).ToList()[0];
+			return View(model);
+		}
 		public IActionResult PatientWarning()
 		{
 			return View();

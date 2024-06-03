@@ -46,6 +46,7 @@ namespace ShizUslugi.Controllers
 			AllPatientViewModel model= new AllPatientViewModel();
 			int chamber_id = _context.patient.Where(p => p.id == StaticStuff.patient.id).ToList()[0].chamberid;
 			model.chamber = _context.chamber.Where(c => c.id == chamber_id).ToList()[0];
+			model.patients = _context.patient.Where(p => p.chamberid ==  chamber_id && p.id != StaticStuff.patient.id).ToList();
 			return View(model);
 		}
 		public IActionResult MySchedule()

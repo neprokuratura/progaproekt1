@@ -6,6 +6,7 @@ namespace ShizUslugi.ViewModels
 	{
 		public Doctor doctor { get; set; }
 		public List<Patient> patients { get; set; }
+		public Chamber chamber { get; set; }
 		public List<Chamber> chambers { get; set; }
 		public List<Schedule> schedules { get; set; }
         public List<Diagnosis> diagnosis { get; set; }
