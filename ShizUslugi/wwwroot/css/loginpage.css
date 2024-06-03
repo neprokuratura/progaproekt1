@@ -157,31 +157,31 @@ body {
 .mypatients {
     position: absolute;
     left: 611px;
-    top: 115px;
+    top: 150px;
 }
 
 .schedule {
     position: absolute;
     left: 316px;
-    top: 115px;
+    top: 150px;
 }
 
 .mypage {
     position: absolute;
     left: 21px;
-    top: 115px;
+    top: 150px;
 }
 
 .shizmypage {
     position: absolute;
     left: 21px;
-    top: 115px;
+    top: 150px;
 }
 
 .mydoctors {
     position: absolute;
     left: 611px;
-    top: 115px;
+    top: 150px;
 }
 
 .mypatients .mainbutton {
@@ -224,5 +224,74 @@ body {
     font-family: "Nunito Medium";
     position: absolute;
     left: 15px;
-    top: 60px
+    top: 70px
 }
+
+.navbar {
+    margin-top: -8px;
+    margin-right: -10px;
+    margin-left: -10px;
+    height: 85px;
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.buttontext {
+    font-family: "Nunito Medium";
+    font-size: 17pt;
+    font-weight: normal;
+}
+
+.navbar .button2 {
+    position: absolute;
+    top: 32px;
+    left: 345px;
+}
+
+.navbar .button3 {
+    position: absolute;
+    top: 32px;
+    left: 485px;
+}
+
+.navbar .mypagenavlink a {
+    float: right;
+    color: #FC4201;
+    font-family: "Nunito Medium";
+    position: relative;
+    top: 32px;
+    right: 20px;
+    font-size: 17pt;
+    text-decoration: underline;
+}
+
+.navbar .button1 {
+    position: absolute;
+    top: 32px;
+    left: 243px;
+}
+
+.navbarlogo {
+    position: absolute;
+    width: 300px;
+    border-width: thin;
+    border-style: none;
+    left: 9px;
+    top: -3px;
+}
+
+    .navbarlogo a {
+        color: #fc4201;
+        text-align: left;
+        font-family: MISTRAL;
+        font-size: 23pt;
+        font-weight: normal;
+        position: absolute;
+        float: right;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        left: 95px;
+        top: 30px;
+    }
