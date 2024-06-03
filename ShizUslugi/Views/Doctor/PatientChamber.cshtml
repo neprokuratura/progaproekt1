@@ -1,9 +1,9 @@
-﻿@using ShizUslugi.ViewModels; 
-@model AllPatientViewModel;
+﻿@using ShizUslugi.ViewModels;
+@model AllDoctorViewModel;
 <p>
-    Вы проживаете в палате номер @Model.chamber.id типа @Model.chamber.type вместимостью @Model.chamber.capacity человек.
+	@Model.patient.name проживает в палате номер @Model.chamber.id типа @Model.chamber.type вместимостью @Model.chamber.capacity человек.
 </p>
-<p class="Header">Мои соседи по палате:</p>
+<p class="Header">Cоседи по палате:</p>
 <table class="table">
 	<thead>
 	<th>Имя</th>

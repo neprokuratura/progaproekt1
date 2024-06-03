@@ -184,6 +184,12 @@ body {
     top: 150px;
 }
 
+.mydiagnoses {
+    position: absolute;
+    left: 906px;
+    top: 150px;
+}
+
 .mypatients .mainbutton {
     background-image: url(https://imageup.ru/img61/4835168/ava0shiz.png);
     background-size: 180px auto;
@@ -199,7 +205,7 @@ body {
 }
 
 .schedule .mainbutton {
-    background-image: url(https://imageup.ru/img50/4835165/chasy.jpg);
+    background-image: url(https://imageup.ru/img165/4835657/chasy1.png);
     background-size: 190px auto;
     background-repeat: no-repeat;
     background-position: 48% 15%;
@@ -214,6 +220,13 @@ body {
 
 .shizmypage .mainbutton {
     background-image: url(https://imageup.ru/img61/4835168/ava0shiz.png);
+    background-size: 180px auto;
+    background-repeat: no-repeat;
+    background-position: 48% 15%;
+}
+
+.mydiagnoses .mainbutton {
+    background-image: url(https://imageup.ru/img88/4835655/novyi-proekt.png);
     background-size: 180px auto;
     background-repeat: no-repeat;
     background-position: 48% 15%;
@@ -243,6 +256,12 @@ body {
     font-weight: normal;
 }
 
+.navbar .button1 {
+    position: absolute;
+    top: 32px;
+    left: 243px;
+}
+
 .navbar .button2 {
     position: absolute;
     top: 32px;
@@ -255,6 +274,12 @@ body {
     left: 485px;
 }
 
+.navbar .button4 {
+    position: absolute;
+    top: 32px;
+    left: 615px;
+}
+
 .navbar .mypagenavlink a {
     float: right;
     color: #FC4201;
@@ -264,12 +289,6 @@ body {
     right: 20px;
     font-size: 17pt;
     text-decoration: underline;
-}
-
-.navbar .button1 {
-    position: absolute;
-    top: 32px;
-    left: 243px;
 }
 
 .navbarlogo {

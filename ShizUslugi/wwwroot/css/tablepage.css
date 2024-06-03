@@ -69,6 +69,12 @@ tr td .checkdiagnosisbutton {
     font-weight: normal;
 }
 
+.navbar .button1 {
+    position: absolute;
+    top: 32px;
+    left: 243px;
+}
+
     .navbar .button2 {
         position: absolute;
         top: 32px;
@@ -94,10 +100,10 @@ tr td .checkdiagnosisbutton {
 
 
 
-    .navbar .button1 {
+    .navbar .button4 {
         position: absolute;
         top: 32px;
-        left: 243px;
+        left: 615px;
     }
 
 
