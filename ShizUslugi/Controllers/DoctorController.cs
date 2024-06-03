@@ -62,6 +62,8 @@ namespace ShizUslugi.Controllers
 		{
 			if(StaticStuff.status)
 			{
+				if (model.patient == null)
+					model = StaticStuff.doctormodel;
 				List<Patient_Diagnosis> pd = _context.patient_and_diagnosis.Where(a => a.patientid == model.patient.id).ToList();
 				List<Diagnosis> diagnoses = new List<Diagnosis>();
 				foreach (var v in pd)
@@ -74,6 +76,22 @@ namespace ShizUslugi.Controllers
 			}
             else return RedirectToAction("PatientWarning");
         }
+		[HttpPost]
+		public IActionResult DeletePatientDiagnoses( AllDoctorViewModel model)
+		{
+			if (StaticStuff.status)
+			{
+				Patient p = _context.patient.Where(p => p.id == model.patient.id).ToList()[0];
+				Diagnosis d = _context.diagnosis.Where(d => d.id == model.singlediagnosis.id).ToList()[0];
+				Patient_Diagnosis connection = _context.patient_and_diagnosis.Where(a => a.patientid == model.patient.id 
+				&& a.diagnosisid == model.singlediagnosis.id).ToList()[0];
+				_context.patient_and_diagnosis.Remove(connection);
+				_context.SaveChanges();
+				StaticStuff.doctormodel = model;
+				return RedirectToAction("PatientDiagnoses");
+			}
+			else return RedirectToAction("PatientWarning");
+		}
 		public IActionResult PatientWarning()
 		{
 			return View();

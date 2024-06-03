@@ -23,6 +23,13 @@
 				<td>
 					@diagnosis.description
 				</td>
+				<td>
+					<form asp-action="DeletePatientDiagnoses" method="post">
+						<input asp-for="singlediagnosis.id" style="visibility:hidden" readonly="true" value="@diagnosis.id" type="text" />
+						<input asp-for="patient.id" style="visibility:hidden" readonly="true" value="@Model.patient.id" type="text" />
+						<input name = "button" type="submit" value="удалить диагноз" />
+					</form>
+				</td>
 			</tr>
 		}
 	</tbody>

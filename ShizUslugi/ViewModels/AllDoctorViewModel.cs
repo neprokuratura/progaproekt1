@@ -10,5 +10,6 @@ namespace ShizUslugi.ViewModels
 		public List<Schedule> schedules { get; set; }
         public List<Diagnosis> diagnosis { get; set; }
         public Patient patient { get; set; }
+		public Diagnosis singlediagnosis { get; set; }
     }
 }
