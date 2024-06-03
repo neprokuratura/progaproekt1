@@ -4,7 +4,7 @@
 	Layout = null;
 }
 <body>
-	<link rel="stylesheet" href="~/css/loginpage.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/loginpage.css" asp-append-version="true" />
 	<div class = "navbar">
 	<div class = "navbarlogo">
 	<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "90"/>
@@ -21,6 +21,9 @@
 	</div>
 		<div class = "button4">
 		<a class = "buttontext">Мои диагнозы</a>
+	</div>
+			<div class = "button5">
+		<a class = "buttontext">Моя палата</a>
 	</div>
 	<div class = "mypagenavlink">
 	<a>Личный кабинет</a>
@@ -45,6 +48,11 @@
 	<div class = "mydiagnoses">
 	<form asp-action="MyDiagnoses" method="get">
 		<input type="submit" class="mainbutton" value="Мои диагнозы">
+	</form>
+	</div>
+		<div class = "mychamber">
+	<form asp-action="MyChamber" method="get">
+		<input type="submit" class="mainbutton" value="Моя палата">
 	</form>
 	</div>
 </body>

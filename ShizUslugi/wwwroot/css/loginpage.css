@@ -190,6 +190,12 @@ body {
     top: 150px;
 }
 
+.mychamber {
+    position: absolute;
+    left: 21px;
+    top: 460px;
+}
+
 .mypatients .mainbutton {
     background-image: url(https://imageup.ru/img61/4835168/ava0shiz.png);
     background-size: 180px auto;
@@ -227,6 +233,13 @@ body {
 
 .mydiagnoses .mainbutton {
     background-image: url(https://imageup.ru/img88/4835655/novyi-proekt.png);
+    background-size: 180px auto;
+    background-repeat: no-repeat;
+    background-position: 48% 15%;
+}
+
+.mychamber .mainbutton {
+    background-image: url(https://imageup.ru/img61/4835168/ava0shiz.png);
     background-size: 180px auto;
     background-repeat: no-repeat;
     background-position: 48% 15%;
@@ -278,6 +291,12 @@ body {
     position: absolute;
     top: 32px;
     left: 615px;
+}
+
+.navbar .button5 {
+    position: absolute;
+    top: 32px;
+    left: 785px;
 }
 
 .navbar .mypagenavlink a {
