@@ -1,10 +1,33 @@
 ﻿@using ShizUslugi.ViewModels;
 @model AllPatientViewModel;
-<div>Мои врачи</div>
-<table class=" = table">
+@{
+	Layout = null;
+}
+<body>
+<link rel="stylesheet" href="~/css/tablepage.css" asp-append-version="true" />
+<div class = "navbar">
+	<div class = "navbarlogo">
+	<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "90"/>
+	<a>ШизУслуги</a>
+	</div>
+		<div class = "button1">
+		<a class = "buttontext">Главная</a>
+	</div>
+	<div class = "button2">
+		<a class = "buttontext">Расписание</a>
+	</div>
+	<div class = "button3">
+		<a class = "buttontext">Мои врачи</a>
+	</div>
+	<div class = "mypagenavlink">
+	<a>Личный кабинет</a>
+	</div>
+</div>
+<a class ="backbutton">&lt;-Назад</a>
+<p class = "Header">Мои врачи</p>
+<table class="table">
 	<thead>
 		<tr>
-			<th>
 			<th>Имя</th>
 			<th>Фамилия</th>
 			<th>Отчество</th>
@@ -39,3 +62,4 @@
 	</tbody>
 	</thead>
 </table>
+</body>

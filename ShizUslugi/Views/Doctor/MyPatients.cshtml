@@ -1,19 +1,38 @@
 ﻿@using ShizUslugi.ViewModels;
 @model AllDoctorViewModel;
 @{
+	Layout = null;
 }
-<div>Мои Пациенты</div>
-<table class=" = table">
+<body>
+<link rel="stylesheet" href="~/css/tablepage.css" asp-append-version="true" />
+<div class = "navbar">
+	<div class = "navbarlogo">
+	<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "90"/>
+	<a>ШизУслуги</a>
+	</div>
+		<div class = "button1">
+		<a class = "buttontext">Главная</a>
+	</div>
+	<div class = "button2">
+		<a class = "buttontext">Расписание</a>
+	</div>
+	<div class = "button3">
+		<a class = "buttontext">Мои пациенты</a>
+	</div>
+	<div class = "mypagenavlink">
+	<a>Личный кабинет</a>
+	</div>
+</div>
+<a class ="backbutton">&lt;-Назад</a>
+<p class = "Header">Мои пациенты</p>
+<table class = "table">
 	<thead>
-		<tr>
-			<th>
-				<th>Имя</th>
-			<th>Фамилия</th>
-			<th>Отчество</th>
-			<th>Палата</th>
-			<th>Рейтинг Буйности</th>
-			</th>
-		</tr>
+		<th>Имя</th>
+		<th>Фамилия</th>
+		<th>Отчество</th>
+		<th>Палата</th>
+		<th>Рейтинг Буйности</th>
+		<th>Диагнозы</th>
 		<tbody>
 			@foreach(Patient patient in Model.patients)
 			{
@@ -34,14 +53,16 @@
 						@patient.rating
 					</td>
 					<td>
+						<div class = "checkdiagnosisbutton">
 						<form asp-action="PatientDiagnoses" method ="get">
-							<input asp-for="patient.id" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
+							<input class = "kostil" asp-for="patient.id" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
 						    <input name="button" type="submit" value= "посмотреть диагнозы" />
                         </form>
+						</div>
 					</td>
-
 				</tr>
 			}
 		</tbody>
 	</thead>
 </table>
+</body>
