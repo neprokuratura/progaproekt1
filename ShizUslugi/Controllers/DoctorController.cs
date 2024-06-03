@@ -127,9 +127,29 @@ namespace ShizUslugi.Controllers
 			Account account = _context.account.Where(b => b.id == StaticStuff.doctor.accountid).ToList()[0];
 			return View(account);
 		}
+		[HttpGet]
 		public IActionResult ChangePassword()
 		{
-			return View();
+			var response = new AccountViewModel();
+			return View(response);
+		}
+		[HttpPost]
+		public IActionResult ChangePassword(AccountViewModel A)
+		{
+			if (A.Password1 == A.Password2)
+			{
+				A.IsPasswordSame = true;
+				Account passwordupdate = _context.account.Where(b => b.id == StaticStuff.doctor.accountid).ToList()[0];
+				passwordupdate.password = A.Password1;
+				_context.account.Update(passwordupdate);
+				_context.SaveChanges();
+				return RedirectToAction("PersonalCab");
+			}
+			else
+			{
+				A.IsPasswordSame = false;
+				return View(A);
+			}
 		}
 		public IActionResult PatientWarning()
 		{
