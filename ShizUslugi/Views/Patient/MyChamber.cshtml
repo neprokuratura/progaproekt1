@@ -11,25 +11,25 @@
 	<a>ШизУслуги</a>
 	</div>
 		<div class = "button1">
-		<a class = "buttontext">Главная</a>
+		<a asp-action="Index" class = "buttontext">Главная</a>
 	</div>
 	<div class = "button2">
-		<a class = "buttontext">Расписание</a>
+		<a asp-action="MySchedule" class = "buttontext">Расписание</a>
 	</div>
 	<div class = "button3">
-		<a class = "buttontext">Мои врачи</a>
+		<a asp-action="MyDoctors"class = "buttontext">Мои врачи</a>
 	</div>
 		<div class = "button4">
-		<a class = "buttontext">Мои диагнозы</a>
+		<a asp-action="MyDiagnoses" class = "buttontext">Мои диагнозы</a>
 	</div>
 			<div class = "button5">
-		<a class = "buttontext">Моя палата</a>
+		<a asp-action = "MyChamber"class = "buttontext">Моя палата</a>
 	</div>
 	<div class = "mypagenavlink">
 	<a>Личный кабинет</a>
 	</div>
 	</div>
-<a class ="backbutton">&lt;-Назад</a>
+<a asp-action = "Index"class ="backbutton">&lt;-Назад</a>
 <p class = "info">
     Вы проживаете в палате номер @Model.chamber.id типа @Model.chamber.type вместимостью @Model.chamber.capacity человек.
 </p>
