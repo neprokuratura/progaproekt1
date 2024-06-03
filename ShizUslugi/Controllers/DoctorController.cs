@@ -114,6 +114,15 @@ namespace ShizUslugi.Controllers
 			}
 			else return RedirectToAction("PatientWarning");
 		}
+		public IActionResult PersonalCab()
+		{
+			Account account = _context.account.Where(b => b.id == StaticStuff.doctor.accountid).ToList()[0];
+			return View(account);
+		}
+		public IActionResult ChangePassword()
+		{
+			return View();
+		}
 		public IActionResult PatientWarning()
 		{
 			return View();

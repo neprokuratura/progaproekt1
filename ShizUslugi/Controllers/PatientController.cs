@@ -60,6 +60,7 @@ namespace ShizUslugi.Controllers
 			model.doctors = d;
 			return View(model);
 		}
+		
 	}
 	
 }
