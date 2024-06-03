@@ -106,6 +106,13 @@ tr td .checkdiagnosisbutton {
         left: 615px;
     }
 
+.navbar .button5 {
+    position: absolute;
+    top: 32px;
+    left: 785px;
+}
+
+
 
 
 
@@ -132,3 +139,13 @@ tr td .checkdiagnosisbutton {
         left: 95px;
         top: 30px;
     }
+
+.info {
+    font-family: "Nunito Medium";
+    color: #FC4201;
+    font-size: 25pt;
+    text-align: left;
+    text-indent: 0px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}

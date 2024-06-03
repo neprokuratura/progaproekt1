@@ -1,5 +1,29 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using ShizUslugi.ViewModels;
+@model Account;
+<p class="Header">Ваши данные</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Логин</th>
+			<th>Пароль</th>
+		</tr>
+	<tbody>
+			
+			<tr>
+				<td>
+						@Model.login
+				</td>
+				<td>
+						@Model.password
+				</td>
+			<td>
+				<form asp-action="ChangePassword" method="post">
+						<input name = "button" type="submit" value="Изменить Пароль" />
+				</form>
+			</td>
+			</tr>
+			
+	</tbody>
+	</thead>
+</table>
+
