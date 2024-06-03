@@ -11,16 +11,16 @@
 	<a>ШизУслуги</a>
 	</div>
 		<div class = "button1">
-		<a class = "buttontext">Главная</a>
+		<a asp-action="Index" class = "buttontext">Главная</a>
 	</div>
 	<div class = "button2">
-		<a class = "buttontext">Расписание</a>
+		<a asp-action = "MySchedule"class = "buttontext">Расписание</a>
 	</div>
 	<div class = "button3">
-		<a class = "buttontext">Мои пациенты</a>
+		<a asp-action = "MyPatients" class = "buttontext">Мои пациенты</a>
 	</div>
 	<div class = "mypagenavlink">
-	<a>Личный кабинет</a>
+	<a asp-action="PersonalCab">Личный кабинет</a>
 	</div>
 </div>
 	<link rel="stylesheet" href="~/css/loginpage.css" asp-append-version="true" />

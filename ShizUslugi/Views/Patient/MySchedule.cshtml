@@ -11,19 +11,19 @@
 	<a>ШизУслуги</a>
 	</div>
 		<div class = "button1">
-		<a class = "buttontext">Главная</a>
+		<a asp-action="Index" class = "buttontext">Главная</a>
 	</div>
 	<div class = "button2">
-		<a class = "buttontext">Расписание</a>
+		<a asp-action ="MySchedule" class = "buttontext">Расписание</a>
 	</div>
 	<div class = "button3">
-		<a class = "buttontext">Мои врачи</a>
+		<a asp-action="MyDoctors" class = "buttontext">Мои врачи</a>
 	</div>
 		<div class = "button4">
-		<a class = "buttontext">Мои диагнозы</a>
+		<a asp-action="MyDiagnoses" class = "buttontext">Мои диагнозы</a>
 	</div>
 	<div class = "mypagenavlink">
-	<a>Личный кабинет</a>
+	<a asp-action="PersonalCab">Личный кабинет</a>
 	</div>
 	</div>
 <a class ="backbutton">&lt;-Назад</a>
@@ -51,7 +51,7 @@
 							@schedule.action
 					</td>
 					<td>
-							@schedule.doctor.name
+							@schedule.doctor.surname @schedule.doctor.name[0]. @schedule.doctor.thirdname[0].
 					</td>
 				</tr>
 				}
