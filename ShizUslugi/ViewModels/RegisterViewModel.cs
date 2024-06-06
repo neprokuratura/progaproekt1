@@ -5,5 +5,8 @@ namespace ShizUslugi.ViewModels
 	{
 		public Account account { get; set; }
 		public bool IsUserExisting { get; set; }
+		public bool IsFieldOverfilled { get; set; }
+		public bool IsFieldEmpty { get; set; } = true;
+		public string FieldName { get; set; }
 	}
 }

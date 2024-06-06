@@ -46,6 +46,14 @@
 			{
 				<div>Логин @Model.account.login уже занят</div>
 			}
+			@if (Model.IsFieldOverfilled)
+			{
+				<div>Превышен размер поля "@Model.FieldName"</div>
+			}
+			@if (Model.IsFieldEmpty)
+			{
+				<div>Поле "@Model.FieldName" не должно быть пустым</div>
+			}
 	<form method="post" asp-controller="Home" asp-action="Index">
 	<a class="loginref" asp-action="Index">Войти</a>
 	</form>
