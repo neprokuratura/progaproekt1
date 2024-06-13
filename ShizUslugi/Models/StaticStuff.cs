@@ -9,5 +9,6 @@ namespace ShizUslugi.Models
 		public static bool status {  get; set; }
 		public static AllDoctorViewModel doctormodel { get; set; }
 		public static List<Diagnosis> alldiagnoses { get; set; }
+		public static int adminid = 9;
 	}
 }

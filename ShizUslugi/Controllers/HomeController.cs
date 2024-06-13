@@ -37,6 +37,11 @@ namespace ShizUslugi.Controllers
 				if(A.password == accounts[0].password)
 				{
 					StaticStuff.status = accounts[0].status;
+					if (accounts[0].id == StaticStuff.adminid)
+					{
+						StaticStuff.doctor = _context.doctor.Where(d => d.accountid == accounts[0].id).ToList()[0];
+						return RedirectToAction("Index", "Admin");
+					}
 					if (accounts[0].status)
 					{
 						StaticStuff.doctor = _context.doctor.Where(d => d.accountid == accounts[0].id).ToList()[0];
