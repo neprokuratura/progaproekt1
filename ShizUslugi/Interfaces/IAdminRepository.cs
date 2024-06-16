@@ -6,7 +6,8 @@ namespace ShizUslugi.Interfaces
 	{
 		IEnumerable<Patient> GetAllPatients();
 		IEnumerable<Chamber> GetAllChambers();
-		public IEnumerable<Patient> GetPatientsBySurname(string surname);
+		IEnumerable<Patient> GetPatientsBySurname(string surname);
+		bool UpdatePatient(Patient patient);
 		bool AddPatient(Patient patient);
 		bool AddSchedule(Schedule schedule);
 		bool DeleteSchedule(Schedule schedule);

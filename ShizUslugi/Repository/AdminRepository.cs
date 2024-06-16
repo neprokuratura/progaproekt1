@@ -28,6 +28,11 @@ namespace ShizUslugi.Repository
 		{
 			return _context.chamber.ToList();
 		}
+		public bool UpdatePatient(Patient patient)
+		{
+			_context.patient.Update(patient);
+			return Save();
+		}
 		public bool AddSchedule(Schedule schedule)
 		{
 			_context.Add(schedule);

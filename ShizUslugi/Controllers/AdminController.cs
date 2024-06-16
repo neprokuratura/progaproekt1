@@ -2,6 +2,7 @@
 using ShizUslugi.Models;
 using ShizUslugi.Repository;
 using ShizUslugi.Interfaces;
+using ShizUslugi.ViewModels;
 namespace ShizUslugi.Controllers
 {
 	public class AdminController : Controller
@@ -13,7 +14,9 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Index()
 		{
-			return View();
+			AllAdminViewModel model = new AllAdminViewModel();
+			model.doctor = StaticStuff.doctor;
+			return View(model);
 		}
 		public IActionResult Patients()
 		{

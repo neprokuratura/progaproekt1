@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ShizUslugi.ViewModels;
+@model AllAdminViewModel;
+@{
 	ViewData["Title"] = "Index";
 	Layout = null;
 }
@@ -15,7 +17,7 @@
 		<a asp-action = "MySchedule"class = "buttontext">Расписание</a>
 	</div>
 	<div class = "button3">
-		<a asp-action = "MyPatients" class = "buttontext">Пациенты</a>
+		<a asp-action = "Patients" class = "buttontext">Пациенты</a>
 	</div>
 	<div class = "mypagenavlink">
 	<a asp-action="PersonalCab">Личный кабинет</a>
@@ -26,7 +28,7 @@
 		<h1> Добро пожаловать, уважаемый @Model.doctor.surname @Model.doctor.name @Model.doctor.thirdname</h1>
 	</div>
 	<div class = "mypatients">
-		<form asp-action="MyPatients" method="get">
+		<form asp-action="Patients" method="get">
 			<input type="submit" class="mainbutton" value="Пациенты">
 		</form>
 	</div>
