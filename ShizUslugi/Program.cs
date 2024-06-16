@@ -1,5 +1,6 @@
+using ShizUslugi.Interfaces;
 using ShizUslugi.Models;
-
+using ShizUslugi.Repository;
 namespace ShizUslugi
 {
 	public class Program
@@ -11,6 +12,8 @@ namespace ShizUslugi
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 			builder.Services.AddMvc();
+			builder.Services.AddControllersWithViews();
+			builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 			builder.Services.AddDbContext<ApplicationContext>();
 			var app = builder.Build();
 

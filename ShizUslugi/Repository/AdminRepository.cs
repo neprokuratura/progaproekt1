@@ -16,13 +16,17 @@ namespace ShizUslugi.Repository
 			_context.Add(patient);
 			return Save();
 		}
-		public async Task <IEnumerable<Patient>> GetAllPatientsAsync()
+		public IEnumerable<Patient> GetAllPatients()
 		{
-			return await _context.patient.ToListAsync();
+			return  _context.patient.ToList();
 		}
-		public async Task <IEnumerable<Patient>> GetPatientsBySurnameAsync(string surname)
+		public IEnumerable<Patient> GetPatientsBySurname(string surname)
 		{
-			return await _context.patient.Where(s => s.surname == surname).ToListAsync();
+			return _context.patient.Where(s => s.surname == surname).ToList();
+		}
+		public IEnumerable<Chamber> GetAllChambers()
+		{
+			return _context.chamber.ToList();
 		}
 		public bool AddSchedule(Schedule schedule)
 		{

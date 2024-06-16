@@ -4,8 +4,9 @@ namespace ShizUslugi.Interfaces
 {
 	public interface IAdminRepository
 	{
-		Task<IEnumerable<Patient>> GetAllPatientsAsync();
-		public Task<IEnumerable<Patient>> GetPatientsBySurnameAsync(string surname);
+		IEnumerable<Patient> GetAllPatients();
+		IEnumerable<Chamber> GetAllChambers();
+		public IEnumerable<Patient> GetPatientsBySurname(string surname);
 		bool AddPatient(Patient patient);
 		bool AddSchedule(Schedule schedule);
 		bool DeleteSchedule(Schedule schedule);
