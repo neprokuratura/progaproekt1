@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Patient>;
+@{
+    <table class = "table">
+	<thead>
+		<th>Имя</th>
+		<th>Фамилия</th>
+		<th>Отчество</th>
+		<th>Палата</th>
+		<th>Рейтинг Буйности</th>
+		<th>Диагнозы</th>
+		<tbody>
+			@foreach(Patient patient in Model)
+			{
+				<tr>
+					<td>
+						@patient.name
+					</td>
+				<td>
+					@patient.surname
+				</td>
+				<td>
+					@patient.thirdname
+				</td>
+				<td>
+					<form asp-action="PatientChamber" method="get">
+							<input class="kostil"  style="visibility:hidden" readonly="true" , value="@patient.id" , type="text" />
+							<input name="button" type="submit" value="@patient.chamber.type" />
+					</form>
+				</td>
+					<td>
+						@patient.rating
+					</td>
+					<td>
+						<div class = "checkdiagnosisbutton">
+						<form asp-action="PatientDiagnoses" method ="get">
+							<input class = "kostil" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
+						    <input name="button" type="submit" value= "посмотреть диагнозы" />
+                        </form>
+						</div>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</thead>
+</table>
+}
