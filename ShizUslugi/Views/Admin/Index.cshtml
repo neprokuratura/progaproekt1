@@ -1,6 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = null;
+}
 <body>
-	<header>temp</header>
+	<div class = "navbar">
+	<div class = "navbarlogo">
+	<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "90"/>
+	<a>ШизУслуги</a>
+	</div>
+		<div class = "button1">
+		<a asp-action="Index" class = "buttontext">Главная</a>
+	</div>
+	<div class = "button2">
+		<a asp-action = "MySchedule"class = "buttontext">Расписание</a>
+	</div>
+	<div class = "button3">
+		<a asp-action = "MyPatients" class = "buttontext">Пациенты</a>
+	</div>
+	<div class = "mypagenavlink">
+	<a asp-action="PersonalCab">Личный кабинет</a>
+	</div>
+</div>
+	<link rel="stylesheet" href="~/css/loginpage.css" asp-append-version="true" />
+		<div class = "Greetings">
+		<h1> Добро пожаловать, уважаемый @Model.doctor.surname @Model.doctor.name @Model.doctor.thirdname</h1>
+	</div>
+	<div class = "mypatients">
+		<form asp-action="MyPatients" method="get">
+			<input type="submit" class="mainbutton" value="Пациенты">
+		</form>
+	</div>
+	<div class = "schedule">
+		<form asp-action="MySchedule" method="get">
+			<input type="submit" class = "mainbutton" value = "Моё расписание">
+		</form>
+	</div>
+	<div class = "mypage">
+		<form asp-action="PersonalCab" method="get">
+			<input type="submit" class = "mainbutton" value = "Личный кабинет">
+		</form>
+	</div>
 </body>
