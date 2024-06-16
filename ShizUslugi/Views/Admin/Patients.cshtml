@@ -1,6 +1,29 @@
 ﻿@model IEnumerable<Patient>;
 @{
-    <table class = "table">
+	Layout = null;
+}
+<body>
+	<link rel="stylesheet" href="~/css/tablepage.css" asp-append-version="true" />
+	<div class = "navbar">
+		<div class = "navbarlogo">
+		<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "90"/>
+		<a>ШизУслуги</a>
+		</div>
+			<div class = "button1">
+			<a asp-action="Index" class = "buttontext">Главная</a>
+		</div>
+		<div class = "button2">
+			<a asp-action = "MySchedule"class = "buttontext">Расписание</a>
+		</div>
+		<div class = "button3">
+			<a asp-action = "Patients" class = "buttontext">Пациенты</a>
+		</div>
+		<div class = "mypagenavlink">
+		<a asp-action="PersonalCab">Личный кабинет</a>
+		</div>
+	</div>
+	<a asp-action = "MyPatients" class ="backbutton">&lt;-Назад</a>
+	<table class = "table">
 	<thead>
 		<th>Имя</th>
 		<th>Фамилия</th>
@@ -8,6 +31,7 @@
 		<th>Палата</th>
 		<th>Рейтинг Буйности</th>
 		<th>Диагнозы</th>
+		<th>Параметры</th>
 		<tbody>
 			@foreach(Patient patient in Model)
 			{
@@ -38,9 +62,17 @@
                         </form>
 						</div>
 					</td>
+						<td>
+							<div class = "changeparametersbutton">
+							<form asp-action="PatientDiagnoses" method ="get">
+								<input class = "kostil" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
+								<input name="button" type="submit" value= "изменить" />
+							</form>
+							</div>
+						</td>
 				</tr>
 			}
 		</tbody>
 	</thead>
 </table>
-}
+</body>

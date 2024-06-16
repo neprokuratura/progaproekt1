@@ -38,9 +38,6 @@ thead tr th {
     text-align: center;
     font-family: "Nunito Medium";
 }
-tr td .checkdiagnosisbutton {
-    width:400px;
-}
 .kostil
 {
     position:absolute;
@@ -51,6 +48,13 @@ tr td .checkdiagnosisbutton {
     float:right;
     width:90px;
     right:40%;
+}
+
+tr td .changeparametersbutton {
+    position: relative;
+    float: right;
+    width: 50px;
+    right: 40%;
 }
 
 .navbar {
