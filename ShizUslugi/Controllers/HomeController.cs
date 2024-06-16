@@ -42,7 +42,7 @@ namespace ShizUslugi.Controllers
 						StaticStuff.doctor = _context.doctor.Where(d => d.accountid == accounts[0].id).ToList()[0];
 						return RedirectToAction("Index", "Admin");
 					}
-					if (accounts[0].status)
+					else if (accounts[0].status)
 					{
 						StaticStuff.doctor = _context.doctor.Where(d => d.accountid == accounts[0].id).ToList()[0];
 						return RedirectToAction("Index", "Doctor");
