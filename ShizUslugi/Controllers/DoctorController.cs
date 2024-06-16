@@ -136,20 +136,34 @@ namespace ShizUslugi.Controllers
 		[HttpPost]
 		public IActionResult ChangePassword(AccountViewModel A)
 		{
-			if (A.Password1 == A.Password2)
+			if ((A.Password1 == null) || (A.Password2 == null))
 			{
+				A.IsFieldEmpty = true;
+				return View(A);
+			}
+			else if (A.Password1.Length > 20|| A.Password2.Length > 20)
+			{
+				A.IsFieldOverfilled = true;
+				return View(A);
+			}
+			else if (A.Password1 != A.Password2)
+			{
+				A.IsPasswordSame = false;
+				return View(A);
+			}
+			else
+			{
+				A.IsFieldEmpty = false;
 				A.IsPasswordSame = true;
+				A.IsFieldOverfilled = false;
 				Account passwordupdate = _context.account.Where(b => b.id == StaticStuff.doctor.accountid).ToList()[0];
 				passwordupdate.password = A.Password1;
 				_context.account.Update(passwordupdate);
 				_context.SaveChanges();
 				return RedirectToAction("PersonalCab");
 			}
-			else
-			{
-				A.IsPasswordSame = false;
-				return View(A);
-			}
+			
+			
 		}
 		public IActionResult PatientWarning()
 		{
