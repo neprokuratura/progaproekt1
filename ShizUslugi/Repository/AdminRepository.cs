@@ -28,6 +28,18 @@ namespace ShizUslugi.Repository
 		{
 			return _context.chamber.ToList();
 		}
+		public Chamber GetChamberById(int id)
+		{
+			return _context.chamber.Where(c => c.id == id).ToList()[0];
+		}
+		public Account GetAccountById(int id)
+		{
+			return _context.account.Where(a => a.id == id).ToList()[0];
+		}
+		public Patient GetPatientById(int id)
+		{
+			return _context.patient.Where(p => p.id == id).ToList()[0];
+		}
 		public bool UpdatePatient(Patient patient)
 		{
 			_context.patient.Update(patient);

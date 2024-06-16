@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Patient>;
+﻿@using ShizUslugi.ViewModels;
+@model AllAdminViewModel;
 @{
 	Layout = null;
 }
@@ -33,43 +34,92 @@
 		<th>Диагнозы</th>
 		<th>Параметры</th>
 		<tbody>
-			@foreach(Patient patient in Model)
+			@foreach(Patient patient in Model.patients)
 			{
 				<tr>
+					<form asp-action="PatientsEditSubmit" method="post">
 					<td>
-						@patient.name
+							@if(Model.IsEdit && patient.id == Model.patient.id)
+							{
+								<input asp-for="patient.name" type = "text" value="@patient.name"/>
+							}
+							else
+							@patient.name
 					</td>
 				<td>
+							@if (Model.IsEdit && patient.id == Model.patient.id)
+							{
+							<input asp-for="patient.surname" type="text" value="@patient.surname" />
+							}
+							else
 					@patient.surname
 				</td>
 				<td>
+							@if (Model.IsEdit && patient.id == Model.patient.id)
+							{
+							<input asp-for="patient.thirdname" type="text" value="@patient.thirdname" />
+							}
+							else
 					@patient.thirdname
 				</td>
 				<td>
-					<form asp-action="PatientChamber" method="get">
+							@if(Model.IsEdit && patient.id == Model.patient.id)
+							{
+								<select asp-for = "patient.chamberid">
+									@foreach (Chamber chamber in Model.chambers)
+									{
+										<option value ="@chamber.id">
+											@chamber.type
+										</option>
+									}
+								</select>
+							}
+							else{
+							<form asp-action="PatientChamber" method="get">
 							<input class="kostil"  style="visibility:hidden" readonly="true" , value="@patient.id" , type="text" />
 							<input name="button" type="submit" value="@patient.chamber.type" />
-					</form>
+					        </form>
+							}
 				</td>
 					<td>
-						@patient.rating
+							@if (Model.IsEdit && patient.id == Model.patient.id)
+							{
+								<input asp-for ="patient.rating" type = "number" value="@patient.rating" />
+							}
+							else
+							@patient.rating
 					</td>
 					<td>
-						<div class = "checkdiagnosisbutton">
+							@if (Model.IsEdit && patient.id == Model.patient.id)
+							{
+							<p>Посмотреть диагнозы</p>
+							}
+							else{
+								<div class = "checkdiagnosisbutton">
 						<form asp-action="PatientDiagnoses" method ="get">
 							<input class = "kostil" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
 						    <input name="button" type="submit" value= "посмотреть диагнозы" />
                         </form>
 						</div>
+						}
 					</td>
 						<td>
-							<div class = "changeparametersbutton">
-							<form asp-action="PatientDiagnoses" method ="get">
-								<input class = "kostil" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
-								<input name="button" type="submit" value= "изменить" />
-							</form>
-							</div>
+							@if (Model.IsEdit && patient.id == Model.patient.id)
+							{
+							    <input asp-for = "patient.id" class = "kostil" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
+								<input name="button" type="submit" value="сохранить" />
+							}
+							else
+							{
+								<div class = "changeparametersbutton">
+									<form asp-action="PatientsEdit" method ="get">
+										<input asp-for = "patient.id" class = "kostil" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
+										<input name="button" type="submit" value= "изменить" />
+									</form>
+								</div>
+							}
 						</td>
+					</form>
 				</tr>
 			}
 		</tbody>
