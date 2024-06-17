@@ -24,6 +24,47 @@
 		</div>
 	</div>
 	<a asp-action = "MyPatients" class ="backbutton">&lt;-Назад</a>
+	<div>
+		@if (Model.IsInputActivate)
+		{
+			<form asp-action="Patients" method="post">
+				  Имя:<input asp-for= "patient.name" type="text" />
+				Фамилия:<input asp-for="patient.surname" type="text" />
+				Отчество (при наличии): <input asp-for="patient.thirdname" type="text" />
+				Палата:
+				<select asp-for="patient.chamberid">
+					@foreach(Chamber chamber in Model.chambers)
+					{
+						<option value = "@chamber.id">@chamber.type</option>
+					}
+				</select>
+				  Рейтинг: <input asp-for="patient.rating" type="number" />
+				  Логин: <input asp-for = "account.login"type= "text" />
+				  Пароль: <input asp-for = "account.password" type="text" />
+				  <input type = "submit" name="button" value="добавить"/>
+			</form>
+		}
+		else
+		{
+			<form asp-action="AddPatient"><input type="submit" name="button" value="добавить в базу нового пациента" /></form>
+		}
+	</div>
+	@if (Model.IsChamberOverfilled)
+	{
+		<p>Палата переполнена</p>
+	}
+	@if (Model.IsUserExisting)
+	{
+		<div>Логин @Model.account.login уже занят</div>
+	}
+	@if (Model.IsFieldOverfilled)
+	{
+		<div>Превышен размер поля "@Model.FieldName"</div>
+	}
+	@if (Model.IsFieldEmpty)
+	{
+		<div>Поле "@Model.FieldName" не должно быть пустым</div>
+	}
 	<table class = "table">
 	<thead>
 		<th>Имя</th>

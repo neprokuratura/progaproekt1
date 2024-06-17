@@ -28,6 +28,10 @@ namespace ShizUslugi.Repository
 		{
 			return _context.chamber.ToList();
 		}
+		public IEnumerable<Patient> GetAllPatientsInChamber(int chamberid)
+		{
+			return _context.patient.Where(p => p.chamberid == chamberid).ToList();
+		}
 		public Chamber GetChamberById(int id)
 		{
 			return _context.chamber.Where(c => c.id == id).ToList()[0];
@@ -40,9 +44,18 @@ namespace ShizUslugi.Repository
 		{
 			return _context.patient.Where(p => p.id == id).ToList()[0];
 		}
+		public IEnumerable<Account> GetAccountsByLogin(string login)
+		{
+			return _context.account.Where(a => a.login == login).ToList();
+		}
 		public bool UpdatePatient(Patient patient)
 		{
 			_context.patient.Update(patient);
+			return Save();
+		}
+		public bool AddAccount(Account account)
+		{
+			_context.Add(account);
 			return Save();
 		}
 		public bool AddSchedule(Schedule schedule)
