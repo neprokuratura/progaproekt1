@@ -1,5 +1,13 @@
 ﻿@using ShizUslugi.ViewModels;
 @model AllAdminViewModel;
+@if (Model.IsFieldOverfilled)
+{
+	<div>Превышен размер поля "@Model.FieldName"</div>
+}
+@if (Model.IsFieldEmpty)
+{
+	<div>Поле "@Model.FieldName" не должно быть пустым</div>
+}
 <table class="table">
 <thead>
 	<tr>
@@ -9,38 +17,75 @@
 		<th>Специализация</th>
 		<th>Номер кабинета</th>
 		<th>Телефон</th>
-		<th>Логин</th>
 	</tr>
 	<tbody>
 		@foreach (Doctor doctor in Model.doctors)
 		{
 			<tr>
+				<form asp-action="DoctorsEditSubmit" method="post">
 				<td>
-					@doctor.name
+						@if (Model.IsEdit && doctor.id == Model.doctor.id)
+						{
+						<input asp-for="doctor.name" type="text" value="@doctor.name" />
+						}
+						else
+					    @doctor.name
 				</td>
 				<td>
-					@doctor.surname
+						@if (Model.IsEdit && doctor.id == Model.doctor.id)
+						{
+						<input asp-for="doctor.surname" type="text" value="@doctor.surname" />
+						}
+						else
+					    @doctor.surname
 				</td>
 				<td>
-					@doctor.thirdname
+						@if (Model.IsEdit && doctor.id == Model.doctor.id)
+						{
+						<input asp-for="doctor.thirdname" type="text" value="@doctor.thirdname" />
+						}
+						else
+					    @doctor.thirdname
 				</td>
 				<td>
-					@doctor.specialization
+						@if (Model.IsEdit && doctor.id == Model.doctor.id)
+						{
+						<input asp-for="doctor.specialization" type="text" value="@doctor.specialization" />
+						}
+						else
+					    @doctor.specialization
 				</td>
 				<td>
-					@doctor.cabinetnumber
+						@if (Model.IsEdit && doctor.id == Model.doctor.id)
+						{
+						<input asp-for="doctor.cabinetnumber" type="number" value="@doctor.cabinetnumber" />
+						}
+						else
+					    @doctor.cabinetnumber
 				</td>
 				<td>
-					@doctor.phonenumber
+						@if (Model.IsEdit && doctor.id == Model.doctor.id)
+						{
+						<input asp-for="doctor.phonenumber" type="text" value="@doctor.phonenumber" />
+						}
+						else
+					    @doctor.phonenumber
 				</td>
 				<td>
-					@doctor.account.login
-				</td>
-				<td>
-					<form>
+						@if (Model.IsEdit && doctor.id == Model.doctor.id)
+						{
+						<input asp-for="doctor.id" class="kostil" style="visibility:hidden" readonly="true" , value="@doctor.id" , type="text" />
+						<input name="button" type="submit" value="сохранить" />
+						}
+						else{
+						<form asp-action="Index"><input name="button" type="submit" style="visibility:hidden" class="kostil" /></form>
+					<form asp-action="DoctorsEdit" method="get">
+						<input asp-for="doctor.id" class="kostil" style="visibility:hidden" readonly="true" , value="@doctor.id" , type="text" />
 						<input type ="submit" name="button" value="изменить" />
 					</form>
+						}
 				</td>
+				</form>
 			</tr>
 		}
 	</tbody>

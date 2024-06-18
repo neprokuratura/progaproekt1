@@ -183,7 +183,7 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Doctors()
 		{
-			AllAdminViewModel model = new AllAdminViewModel();
+			AllAdminViewModel model = StaticStuff.adminmodel == null ? new AllAdminViewModel() : StaticStuff.adminmodel;
 			model.doctors = _adminRepository.GetAllDoctors().ToList();
 			model.accounts = _adminRepository.GetAllAccounts().ToList();
 			return View(model);
@@ -192,7 +192,69 @@ namespace ShizUslugi.Controllers
 		{
 			model.IsEdit = true;
 			StaticStuff.adminmodel = model;
-			return View(model);
+			return RedirectToAction("Doctors");
+		}
+		[HttpPost]
+		public IActionResult DoctorsEditSubmit(AllAdminViewModel model)
+		{
+			model.IsEdit = true;
+			model.IsFieldEmpty = true;
+			if (model.doctor.name == null)
+			{
+				model.FieldName = "Имя";
+			}
+			else if (model.doctor.surname == null)
+			{
+				model.FieldName = "Фамилия";
+			}
+			else if (model.doctor.specialization == null)
+			{
+				model.FieldName = "Специализация";
+			}
+			else if (model.doctor.phonenumber == null)
+			{
+				model.FieldName = "Телефон";
+			}
+			else
+			{
+				model.IsFieldEmpty = false;
+				model.IsFieldOverfilled = true;
+				if (model.doctor.name.Length > 20)
+				{
+					model.FieldName = "Имя";
+				}
+				else if (model.doctor.surname.Length > 20)
+				{
+					model.FieldName = "Фамилия";
+				}
+				else if (model.doctor.thirdname == null ? false : model.doctor.thirdname.Length > 20)
+				{
+					model.FieldName = "Отчество";
+				}
+				else if (model.doctor.specialization.Length > 50)
+				{
+					model.FieldName = "Специализация";
+				}
+				else if (model.doctor.phonenumber.Length > 12)
+				{
+					model.FieldName = "Телефон";
+				}
+				else
+				{
+					model.IsFieldOverfilled = false;
+					Doctor doctor_update = _adminRepository.GetDoctorById(model.doctor.id);
+					doctor_update.name = model.doctor.name;
+					doctor_update.surname = model.doctor.surname;
+					doctor_update.thirdname = model.doctor.thirdname;
+					doctor_update.specialization = model.doctor.specialization;
+					doctor_update.cabinetnumber = model.doctor.cabinetnumber;
+					doctor_update.phonenumber = model.doctor.phonenumber;
+					_adminRepository.UpdateDoctor(doctor_update);
+					model.IsEdit = false;
+				}
+			}
+			StaticStuff.adminmodel = model;
+			return RedirectToAction("Doctors");
 		}
 	}
 	

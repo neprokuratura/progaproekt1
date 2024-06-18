@@ -14,8 +14,10 @@ namespace ShizUslugi.Interfaces
 		Chamber GetChamberById(int id);
 		Account GetAccountById(int id);
 		Patient GetPatientById(int id);
+		Doctor GetDoctorById(int id);
 		IEnumerable<Account> GetAccountsByLogin(string login);
 		bool UpdatePatient(Patient patient);
+		bool UpdateDoctor(Doctor doctor);
 		bool AddPatient(Patient patient);
 		bool AddAccount(Account account);
 		bool AddSchedule(Schedule schedule);

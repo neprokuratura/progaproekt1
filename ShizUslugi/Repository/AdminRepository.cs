@@ -56,6 +56,10 @@ namespace ShizUslugi.Repository
 		{
 			return _context.patient.Where(p => p.id == id).ToList()[0];
 		}
+		public Doctor GetDoctorById(int id)
+		{
+			return _context.doctor.Where(d => d.id == id).ToList()[0];
+		}
 		public IEnumerable<Account> GetAccountsByLogin(string login)
 		{
 			return _context.account.Where(a => a.login == login).ToList();
@@ -63,6 +67,11 @@ namespace ShizUslugi.Repository
 		public bool UpdatePatient(Patient patient)
 		{
 			_context.patient.Update(patient);
+			return Save();
+		}
+		public bool UpdateDoctor(Doctor doctor)
+		{
+			_context.doctor.Update(doctor);
 			return Save();
 		}
 		public bool AddAccount(Account account)
