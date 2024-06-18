@@ -12,6 +12,7 @@ namespace ShizUslugi.ViewModels
 		public bool IsFieldOverfilled { get; set; }
 		public string FieldName { get; set; }
 		public List<Doctor> doctors { get; set; }
+		public List<Account> accounts { get; set; }
 		public Account account { get; set; }
 	}
 }

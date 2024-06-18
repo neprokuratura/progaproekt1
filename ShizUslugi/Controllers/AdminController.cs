@@ -185,6 +185,13 @@ namespace ShizUslugi.Controllers
 		{
 			AllAdminViewModel model = new AllAdminViewModel();
 			model.doctors = _adminRepository.GetAllDoctors().ToList();
+			model.accounts = _adminRepository.GetAllAccounts().ToList();
+			return View(model);
+		}
+		public IActionResult DoctorsEdit(AllAdminViewModel model)
+		{
+			model.IsEdit = true;
+			StaticStuff.adminmodel = model;
 			return View(model);
 		}
 	}

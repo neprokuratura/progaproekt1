@@ -9,6 +9,7 @@
 		<th>Специализация</th>
 		<th>Номер кабинета</th>
 		<th>Телефон</th>
+		<th>Логин</th>
 	</tr>
 	<tbody>
 		@foreach (Doctor doctor in Model.doctors)
@@ -31,6 +32,14 @@
 				</td>
 				<td>
 					@doctor.phonenumber
+				</td>
+				<td>
+					@doctor.account.login
+				</td>
+				<td>
+					<form>
+						<input type ="submit" name="button" value="изменить" />
+					</form>
 				</td>
 			</tr>
 		}

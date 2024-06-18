@@ -36,6 +36,10 @@ namespace ShizUslugi.Repository
 		{
 			return _context.doctor.ToList();
 		}
+		public IEnumerable<Account> GetAllAccounts()
+		{
+			return _context.account.ToList();
+		}
 		public IEnumerable<Patient> GetAllPatientsInChamber(int chamberid)
 		{
 			return _context.patient.Where(p => p.chamberid == chamberid).ToList();
