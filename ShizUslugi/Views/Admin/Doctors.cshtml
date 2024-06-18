@@ -17,6 +17,8 @@
 		<th>Специализация</th>
 		<th>Номер кабинета</th>
 		<th>Телефон</th>
+		<th>Пациенты</th>
+		<th>Параметры</th>
 	</tr>
 	<tbody>
 		@foreach (Doctor doctor in Model.doctors)
@@ -71,6 +73,20 @@
 						else
 					    @doctor.phonenumber
 				</td>
+				<td>
+							@if (Model.IsEdit && doctor.id == Model.doctor.id)
+							{
+								<p>Посмотреть пациентов</p>
+							}
+							else
+							{
+								<form asp-action="Index"><input name="button" type="submit" style="visibility:hidden" class="kostil" /></form>
+								<form asp-action="DoctorPatients" method="get">
+							<input asp-for="doctor.id" class="kostil" style="visibility:hidden" readonly="true" , value="@doctor.id" , type="text" />
+								<input type = "submit" name="button" value="Посмотреть пациентов" />
+						           </form>
+							}
+						</td>
 				<td>
 						@if (Model.IsEdit && doctor.id == Model.doctor.id)
 						{

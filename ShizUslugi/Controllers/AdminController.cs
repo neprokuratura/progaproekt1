@@ -185,7 +185,6 @@ namespace ShizUslugi.Controllers
 		{
 			AllAdminViewModel model = StaticStuff.adminmodel == null ? new AllAdminViewModel() : StaticStuff.adminmodel;
 			model.doctors = _adminRepository.GetAllDoctors().ToList();
-			model.accounts = _adminRepository.GetAllAccounts().ToList();
 			return View(model);
 		}
 		public IActionResult DoctorsEdit(AllAdminViewModel model)
@@ -255,6 +254,37 @@ namespace ShizUslugi.Controllers
 			}
 			StaticStuff.adminmodel = model;
 			return RedirectToAction("Doctors");
+		}
+		public IActionResult DoctorPatients(AllAdminViewModel model)
+		{
+			if (model.doctor == null)
+				model = StaticStuff.adminmodel;
+			model.patients = _adminRepository.GetPatientsByDoctorId(model.doctor.id).ToList();
+			model.chambers = _adminRepository.GetAllChambers().ToList();
+			model.allpatients = _adminRepository.GetAllPatients().ToList();
+			return View(model);
+		}
+		[HttpPost]
+		public IActionResult AddPatientDoctor(AllAdminViewModel model)
+		{
+			if(_adminRepository.IsConnectionExisting(model.doctor.id, model.patient.id))
+			{
+				model.HasPatient = true;
+			}
+			else
+			{
+				_adminRepository.AddDoctorPatient(new Doctor_Patient_id { doctorid = model.doctor.id, patientid = model.patient.id });
+			}
+			StaticStuff.adminmodel = model;
+			return RedirectToAction("DoctorPatients");
+		}
+		[HttpPost]
+		public IActionResult DeletePatientDoctor(AllAdminViewModel model)
+		{
+			Doctor_Patient_id dp = _adminRepository.GetDoctor_Patient_id(model.doctor.id, model.patient.id);
+			_adminRepository.DeleteDoctorPatient(dp);
+			StaticStuff.adminmodel = model;
+			return RedirectToAction("DoctorPatients");
 		}
 	}
 	

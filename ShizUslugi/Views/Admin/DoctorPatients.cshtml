@@ -1,0 +1,68 @@
+﻿@using ShizUslugi.ViewModels;
+@model AllAdminViewModel;
+@if (Model.HasPatient)
+{
+	<p>У врача уже назначен этот пациент!</p>
+}
+<form asp-action="AddPatientDoctor" method="post">
+<select asp-for="patient.id">
+	@foreach(Patient patient in Model.allpatients)
+	{
+		<option value="@patient.id">@patient.surname @patient.name[0]. @if(patient.thirdname!=null){<p>@patient.thirdname[0].</p>}</option>
+	}
+</select>
+<input class="kostil" asp-for="doctor.id" style="visibility:hidden" readonly="true" , value="@Model.doctor.id" , type="text" />
+<input name="button" type="submit" value="назначить врачу пациента" />
+</form>
+<table class = "table">
+<thead>
+	<th>Имя</th>
+	<th>Фамилия</th>
+	<th>Отчество</th>
+	<th>Палата</th>
+	<th>Рейтинг Буйности</th>
+	<th>Диагнозы</th>
+	<tbody>
+		@foreach (Patient patient in Model.patients)
+		{
+			<tr>
+				<td>
+					@patient.name
+				</td>
+				<td>
+					@patient.surname
+				</td>
+				<td>
+					@patient.thirdname
+				</td>
+				<td>
+					<form asp-controller="Doctor" asp-action="PatientChamber" method="get">
+						<input class="kostil" asp-for="patient.id" style="visibility:hidden" readonly="true" , value="@patient.id" , type="text" />
+						<input name="button" type="submit" value="@patient.chamber.type" />
+					</form>
+				</td>
+				<td>
+					@patient.rating
+				</td>
+				<td>
+					<div class="checkdiagnosisbutton">
+						<form asp-controller="Doctor" asp-action="PatientDiagnoses" method="get">
+							<input class="kostil" asp-for="patient.id" style="visibility:hidden" readonly="true" , value="@patient.id" , type="text" />
+							<input name="button" type="submit" value="посмотреть диагнозы" />
+						</form>
+					</div>
+				</td>
+				<td>
+					<div>
+						<form asp-action="DeletePatientDoctor" method="post">
+							<input class="kostil" asp-for="doctor.id" style="visibility:hidden" readonly="true" , value="@Model.doctor.id" , type="text" />
+							<input class="kostil" asp-for="patient.id" style="visibility:hidden" readonly="true" , value="@patient.id" , type="text" />
+							<input name="button" type="submit" value="отвязать пациента" />
+						</form>
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>
+</thead>
+</table>
