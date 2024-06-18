@@ -4,8 +4,9 @@
 	ViewData["Title"] = "Index";
 	Layout = null;
 }
+<link rel="stylesheet" href="~/css/loginpage.css" asp-append-version="true" />
 <body>
-	<div class = "navbar">
+<div class = "navbar">
 	<div class = "navbarlogo">
 	<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "90"/>
 	<a>ШизУслуги</a>
@@ -19,11 +20,13 @@
 	<div class = "button3">
 		<a asp-action = "Patients" class = "buttontext">Пациенты</a>
 	</div>
+	<div class = "button4">
+		<a asp-action="Doctors" class = "buttontext">Врачи</a>
+	</div>
 	<div class = "mypagenavlink">
 	<a asp-action="PersonalCab">Личный кабинет</a>
 	</div>
 </div>
-	<link rel="stylesheet" href="~/css/loginpage.css" asp-append-version="true" />
 		<div class = "Greetings">
 		<h1> Добро пожаловать, уважаемый @Model.doctor.surname @Model.doctor.name @Model.doctor.thirdname</h1>
 	</div>
@@ -42,5 +45,4 @@
 			<input type="submit" class = "mainbutton" value = "Личный кабинет">
 		</form>
 	</div>
-	<a asp-action="Doctors">Врачи</a>
 </body>

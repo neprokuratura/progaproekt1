@@ -93,6 +93,12 @@ tr td .changeparametersbutton {
         left: 485px;
     }
 
+.navbar .button4 {
+    position: absolute;
+    top: 32px;
+    left: 485px;
+}
+
     .navbar .mypagenavlink a {
         float: right;
         color: #FC4201;
@@ -155,3 +161,47 @@ tr td .changeparametersbutton {
     margin-top: -20px;
     margin-bottom: 30px;
 }
+
+.newpatientfield {
+    font-family: "Nunito Medium";
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    text-align: left;
+    text-indent: 9px;
+    font-size: 18px;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: visible;
+    visibility: visible;
+    background-color: white;
+    border: thin solid #E4E4E4;
+}
+
+.loginbutton {
+    font-family: "Nunito Medium";
+    width: 200px;
+    height: 33px;
+    left: 63px;
+    top: 306px;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: #1149FC;
+    color: #FFFFFF;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    border-width: thin;
+    border-radius: 5px;
+    border-style: none;
+}
+
+    .loginbutton:hover {
+        background-color: #406CFD;
+    }
+
+    .loginbutton:active {
+        background-color: #1948E1;
+    }

@@ -19,6 +19,9 @@
 		<div class = "button3">
 			<a asp-action = "Patients" class = "buttontext">Пациенты</a>
 		</div>
+		<div class = "button4">
+		<a asp-action="Doctors" class = "buttontext">Врачи</a>
+		</div>
 		<div class = "mypagenavlink">
 		<a asp-action="PersonalCab">Личный кабинет</a>
 		</div>
@@ -28,25 +31,27 @@
 		@if (Model.IsInputActivate)
 		{
 			<form asp-action="Patients" method="post">
-				  Имя:<input asp-for= "patient.name" type="text" />
-				Фамилия:<input asp-for="patient.surname" type="text" />
-				Отчество (при наличии): <input asp-for="patient.thirdname" type="text" />
-				Палата:
-				<select asp-for="patient.chamberid">
-					@foreach(Chamber chamber in Model.chambers)
-					{
-						<option value = "@chamber.id">@chamber.type</option>
-					}
-				</select>
-				  Рейтинг: <input asp-for="patient.rating" type="number" />
-				  Логин: <input asp-for = "account.login"type= "text" />
-				  Пароль: <input asp-for = "account.password" type="text" />
-				  <input type = "submit" name="button" value="добавить"/>
+						<input class = "newpatientfield" asp-for= "patient.name" type="text" placeholder ="Имя"/>
+						<input class = "newpatientfield" asp-for="patient.surname" type="text" placeholder ="Фамилия"/>
+						<input class = "newpatientfield" asp-for="patient.thirdname" type="text" placeholder = "Отчество (при наличии)"/>
+						<input class = "newpatientfield" asp-for="patient.rating" type="number" placeholder ="Рейтинг"/>
+						<input class = "newpatientfield" asp-for = "account.login"type= "text" placeholder ="Логин"/> 
+						<input class = "newpatientfield" asp-for = "account.password" type="text" placeholder ="Пароль"/>
+						Палата:
+						<select asp-for="patient.chamberid">
+						@foreach (Chamber chamber in Model.chambers)
+						{
+								<option value = "@chamber.id">@chamber.type</option>
+						}
+						</select>
+				  <input class = "loginbutton" type = "submit" name="button" value="добавить"/>
 			</form>
 		}
 		else
 		{
-			<form asp-action="AddPatient"><input type="submit" name="button" value="добавить в базу нового пациента" /></form>
+			<form asp-action="AddPatient">
+				<input type="submit" name="button" value="добавить в базу нового пациента" />
+			</form>
 		}
 	</div>
 	@if (Model.IsChamberOverfilled)
