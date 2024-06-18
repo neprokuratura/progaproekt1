@@ -80,6 +80,7 @@
 				<tr>
 					<form asp-action="PatientsEditSubmit" method="post">
 					<td>
+						<form><input name="button" type="submit" style="visibility:hidden" class="kostil" /></form>
 							@if(Model.IsEdit && patient.id == Model.patient.id)
 							{
 								<input asp-for="patient.name" type = "text" value="@patient.name"/>
@@ -116,8 +117,8 @@
 								</select>
 							}
 							else{
-							<form asp-action="PatientChamber" method="get">
-							<input class="kostil"  style="visibility:hidden" readonly="true" , value="@patient.id" , type="text" />
+							<form asp-controller="Doctor"asp-action="PatientChamber" method="get">
+							<input asp-for="patient.id" class="kostil"  style="visibility:hidden" readonly="true" , value="@patient.id" , type="text" />
 							<input name="button" type="submit" value="@patient.chamber.type" />
 					        </form>
 							}
@@ -137,8 +138,8 @@
 							}
 							else{
 								<div class = "checkdiagnosisbutton">
-						<form asp-action="PatientDiagnoses" method ="get">
-							<input class = "kostil" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
+						<form  asp-controller="Doctor" asp-action="PatientDiagnoses" method ="get">
+							<input asp-for="patient.id" class = "kostil" style="visibility:hidden" readonly = "true", value="@patient.id", type="text"/>
 						    <input name="button" type="submit" value= "посмотреть диагнозы" />
                         </form>
 						</div>

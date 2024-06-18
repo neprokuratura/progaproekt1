@@ -28,6 +28,14 @@ namespace ShizUslugi.Repository
 		{
 			return _context.chamber.ToList();
 		}
+		public IEnumerable<Diagnosis> GetAllDiagnoses()
+		{
+			return _context.diagnosis.ToList();
+		}
+		public IEnumerable<Doctor> GetAllDoctors()
+		{
+			return _context.doctor.ToList();
+		}
 		public IEnumerable<Patient> GetAllPatientsInChamber(int chamberid)
 		{
 			return _context.patient.Where(p => p.chamberid == chamberid).ToList();

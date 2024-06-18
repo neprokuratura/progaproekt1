@@ -6,6 +6,8 @@ namespace ShizUslugi.Interfaces
 	{
 		IEnumerable<Patient> GetAllPatients();
 		IEnumerable<Chamber> GetAllChambers();
+		IEnumerable<Diagnosis> GetAllDiagnoses();
+		IEnumerable<Doctor> GetAllDoctors();
 		IEnumerable<Patient> GetPatientsBySurname(string surname);
 		IEnumerable<Patient> GetAllPatientsInChamber(int chamberid);
 		Chamber GetChamberById(int id);

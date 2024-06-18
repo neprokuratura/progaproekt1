@@ -1,0 +1,40 @@
+﻿@using ShizUslugi.ViewModels;
+@model AllAdminViewModel;
+<table class="table">
+<thead>
+	<tr>
+		<th>Имя</th>
+		<th>Фамилия</th>
+		<th>Отчество</th>
+		<th>Специализация</th>
+		<th>Номер кабинета</th>
+		<th>Телефон</th>
+	</tr>
+	<tbody>
+		@foreach (Doctor doctor in Model.doctors)
+		{
+			<tr>
+				<td>
+					@doctor.name
+				</td>
+				<td>
+					@doctor.surname
+				</td>
+				<td>
+					@doctor.thirdname
+				</td>
+				<td>
+					@doctor.specialization
+				</td>
+				<td>
+					@doctor.cabinetnumber
+				</td>
+				<td>
+					@doctor.phonenumber
+				</td>
+			</tr>
+		}
+	</tbody>
+</thead>
+</table>
+

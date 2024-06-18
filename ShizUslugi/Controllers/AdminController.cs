@@ -15,6 +15,7 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Index()
 		{
+			StaticStuff.alldiagnoses = _adminRepository.GetAllDiagnoses().ToList();
 			AllAdminViewModel model = new AllAdminViewModel();
 			model.doctor = StaticStuff.doctor;
 			return View(model);
@@ -179,6 +180,12 @@ namespace ShizUslugi.Controllers
 			model.IsInputActivate = true;
 			StaticStuff.adminmodel = model;
 			return RedirectToAction("Patients");
+		}
+		public IActionResult Doctors()
+		{
+			AllAdminViewModel model = new AllAdminViewModel();
+			model.doctors = _adminRepository.GetAllDoctors().ToList();
+			return View(model);
 		}
 	}
 	
