@@ -194,6 +194,12 @@ body {
     top: 150px;
 }
 
+.shizmypage {
+    position: absolute;
+    left: 21px;
+    top: 150px;
+}
+
 .mydoctors {
     position: absolute;
     left: 611px;
@@ -209,7 +215,7 @@ body {
 .mychamber {
     position: absolute;
     left: 21px;
-    top: 150px;
+    top: 460px;
 }
 
 .mypatients .mainbutton {

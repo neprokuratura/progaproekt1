@@ -1,18 +1,46 @@
 ﻿@using ShizUslugi.ViewModels;
 @model AllAdminViewModel;
+@{
+	Layout = null;
+}
+<link rel="stylesheet" href="~/css/tablepage.css" asp-append-version="true" />
+<body>
+	<div class = "navbar">
+	<div class = "navbarlogo">
+	<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "90"/>
+	<a>ШизУслуги</a>
+	</div>
+		<div class = "button1">
+		<a asp-action="Index" class = "buttontext">Главная</a>
+	</div>
+	<div class = "button2">
+		<a asp-action = "MySchedule"class = "buttontext">Расписание</a>
+	</div>
+	<div class = "button3">
+		<a asp-action = "Patients" class = "buttontext">Пациенты</a>
+	</div>
+	<div class = "button4">
+		<a asp-action="Doctors" class = "buttontext">Врачи</a>
+	</div>
+	<div class = "mypagenavlink">
+	<a asp-action="PersonalCab">Личный кабинет</a>
+	</div>
+</div>
+<a asp-action = "MyPatients" class ="backbutton">&lt;-Назад</a>
+<br/>
 @if (Model.HasPatient)
 {
 	<p>У врача уже назначен этот пациент!</p>
 }
 <form asp-action="AddPatientDoctor" method="post">
-<select asp-for="patient.id">
+<select class = "newpatientfield" asp-for="patient.id">
 	@foreach(Patient patient in Model.allpatients)
 	{
 		<option value="@patient.id">@patient.surname @patient.name[0]. @if(patient.thirdname!=null){<p>@patient.thirdname[0].</p>}</option>
 	}
 </select>
 <input class="kostil" asp-for="doctor.id" style="visibility:hidden" readonly="true" , value="@Model.doctor.id" , type="text" />
-<input name="button" type="submit" value="назначить врачу пациента" />
+<input class = "loginbutton" name="button" type="submit" value="назначить врачу пациента" />
 </form>
 <table class = "table">
 <thead>
@@ -66,3 +94,4 @@
 	</tbody>
 </thead>
 </table>
+</body>
