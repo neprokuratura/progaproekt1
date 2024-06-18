@@ -162,8 +162,15 @@ namespace ShizUslugi.Controllers
 				_context.SaveChanges();
 				return RedirectToAction("PersonalCab");
 			}
-			
-			
+		}
+		public IActionResult Logout()
+		{
+			StaticStuff.patient = null;
+			StaticStuff.doctor = null;
+			StaticStuff.status = false;
+			StaticStuff.doctormodel = null;
+			StaticStuff.alldiagnoses = null;
+			return RedirectToAction("Index", "Home");
 		}
 		public IActionResult PatientWarning()
 		{

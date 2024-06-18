@@ -22,31 +22,31 @@ namespace ShizUslugi.Controllers
 			AllPatientViewModel model = new AllPatientViewModel();
 			List<Doctor_Patient_id> dp = _context.doctor_and_patient.Where(a => a.patientid == StaticStuff.patient.id).ToList();
 			List<Doctor> doctors = new List<Doctor>();
-			foreach(var v in dp)
+			foreach (var v in dp)
 			{
 				doctors.Add(_context.doctor.Where(d => d.id == v.doctorid).ToList()[0]);
 			}
-			model.doctors= doctors;
+			model.doctors = doctors;
 			return View(model);
 		}
 		public IActionResult MyDiagnoses()
 		{
-            AllPatientViewModel model = new AllPatientViewModel();
-            List<Patient_Diagnosis> pd = _context.patient_and_diagnosis.Where(a => a.patientid == StaticStuff.patient.id).ToList();
-            List<Diagnosis> diagnoses= new List<Diagnosis>();
-            foreach (var v in pd)
-            {
-                diagnoses.Add(_context.diagnosis.Where(d => d.id == v.diagnosisid).ToList()[0]);
-            }
-            model.diagnosis= diagnoses;
-            return View(model);
-        }
+			AllPatientViewModel model = new AllPatientViewModel();
+			List<Patient_Diagnosis> pd = _context.patient_and_diagnosis.Where(a => a.patientid == StaticStuff.patient.id).ToList();
+			List<Diagnosis> diagnoses = new List<Diagnosis>();
+			foreach (var v in pd)
+			{
+				diagnoses.Add(_context.diagnosis.Where(d => d.id == v.diagnosisid).ToList()[0]);
+			}
+			model.diagnosis = diagnoses;
+			return View(model);
+		}
 		public IActionResult MyChamber()
 		{
-			AllPatientViewModel model= new AllPatientViewModel();
+			AllPatientViewModel model = new AllPatientViewModel();
 			int chamber_id = _context.patient.Where(p => p.id == StaticStuff.patient.id).ToList()[0].chamberid;
 			model.chamber = _context.chamber.Where(c => c.id == chamber_id).ToList()[0];
-			model.patients = _context.patient.Where(p => p.chamberid ==  chamber_id && p.id != StaticStuff.patient.id).ToList();
+			model.patients = _context.patient.Where(p => p.chamberid == chamber_id && p.id != StaticStuff.patient.id).ToList();
 			return View(model);
 		}
 		public IActionResult MySchedule()
@@ -61,7 +61,55 @@ namespace ShizUslugi.Controllers
 			model.doctors = d;
 			return View(model);
 		}
-		
+		public IActionResult PersonalCab()
+		{
+			Account account = _context.account.Where(b => b.id == StaticStuff.patient.accountid).ToList()[0];
+			return View(account);
+		}
+		[HttpGet]
+		public IActionResult ChangePassword()
+		{
+			var response = new AccountViewModel();
+			return View(response);
+		}
+		[HttpPost]
+		public IActionResult ChangePassword(AccountViewModel A)
+		{
+			if ((A.Password1 == null) || (A.Password2 == null))
+			{
+				A.IsFieldEmpty = true;
+				return View(A);
+			}
+			else if (A.Password1.Length > 20 || A.Password2.Length > 20)
+			{
+				A.IsFieldOverfilled = true;
+				return View(A);
+			}
+			else if (A.Password1 != A.Password2)
+			{
+				A.IsPasswordSame = false;
+				return View(A);
+			}
+			else
+			{
+				A.IsFieldEmpty = false;
+				A.IsPasswordSame = true;
+				A.IsFieldOverfilled = false;
+				Account passwordupdate = _context.account.Where(b => b.id == StaticStuff.patient.accountid).ToList()[0];
+				passwordupdate.password = A.Password1;
+				_context.account.Update(passwordupdate);
+				_context.SaveChanges();
+				return RedirectToAction("PersonalCab");
+			}
+		}
+		public IActionResult Logout()
+		{
+			StaticStuff.patient = null;
+			StaticStuff.doctor = null;
+			StaticStuff.status = false;
+			StaticStuff.doctormodel = null;
+			StaticStuff.alldiagnoses = null;
+			return RedirectToAction("Index", "Home");
+		}
 	}
-	
 }

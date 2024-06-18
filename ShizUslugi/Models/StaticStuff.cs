@@ -10,7 +10,7 @@ namespace ShizUslugi.Models
 		public static AllDoctorViewModel doctormodel { get; set; }
 		public static List<Diagnosis> alldiagnoses { get; set; }
 		//не лучше ли сделать ридонли свойством
-		public static int adminid = 3;
+		public static readonly int adminid = 3;
 		public static AllAdminViewModel adminmodel { get; set; }
 	}
 }

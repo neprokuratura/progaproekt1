@@ -30,6 +30,11 @@
 		<h1> Добро пожаловать, @Model.patient.surname @Model.patient.name @Model.patient.thirdname</h1>
 	</div>
 	<div class = "mydoctors">
+		<div class="mypage">
+			<form asp-action="PersonalCab" method="get">
+				<input type="submit" class="mainbutton" value="Личный кабинет">
+			</form>
+		</div>
 	<form asp-action="MyDoctors" method="get">
 	  <input  type="submit" class = "mainbutton" value = "Мои врачи">
 		</form>
