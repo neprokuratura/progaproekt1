@@ -22,10 +22,10 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Patients()
 		{
-			AllAdminViewModel model = new AllAdminViewModel();
+			AllAdminViewModel model = StaticStuff.adminmodel == null? new AllAdminViewModel() : StaticStuff.adminmodel;
 			model.patients = _adminRepository.GetAllPatients().ToList();
 			model.chambers = _adminRepository.GetAllChambers().ToList();
-			if (StaticStuff.adminmodel != null)
+			/*if (StaticStuff.adminmodel != null)
 			{
 				model.IsEdit = StaticStuff.adminmodel.IsEdit;
 				model.IsChamberOverfilled = StaticStuff.adminmodel.IsChamberOverfilled;
@@ -34,7 +34,7 @@ namespace ShizUslugi.Controllers
 				model.IsFieldOverfilled = StaticStuff.adminmodel.IsFieldOverfilled;
 				model.FieldName = StaticStuff.adminmodel.FieldName;
 				model.patient = StaticStuff.adminmodel.patient;
-			}
+			}*/
 			return View(model);
 		}
 		[HttpPost]
