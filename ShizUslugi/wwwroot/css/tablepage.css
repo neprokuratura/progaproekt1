@@ -164,11 +164,10 @@ tr td .changeparametersbutton {
 
 .newpatientfield {
     font-family: "Nunito Medium";
-    width: 200px;
+    width: 210px;
     height: 35px;
     border-radius: 5px;
     text-align: left;
-    text-indent: 9px;
     font-size: 18px;
     font-family: arimo;
     font-style: normal;
@@ -181,7 +180,25 @@ tr td .changeparametersbutton {
 
 .loginbutton {
     font-family: "Nunito Medium";
-    width: 200px;
+    width: 210px;
+    height: 33px;
+    left: 63px;
+    top: 306px;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: #1149FC;
+    color: #FFFFFF;
+    font-family: arimo;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    border-width: thin;
+    border-radius: 5px;
+    border-style: none;
+}
+.loginbuttonwide {
+    font-family: "Nunito Medium";
+    width: 300px;
     height: 33px;
     left: 63px;
     top: 306px;

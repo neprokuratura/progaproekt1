@@ -38,7 +38,7 @@
 						<input class = "newpatientfield" asp-for = "account.login"type= "text" placeholder ="Логин"/> 
 						<input class = "newpatientfield" asp-for = "account.password" type="text" placeholder ="Пароль"/>
 						Палата:
-						<select asp-for="patient.chamberid">
+							<select class = "newpatientfield" asp-for="patient.chamberid">
 						@foreach (Chamber chamber in Model.chambers)
 						{
 								<option value = "@chamber.id">@chamber.type</option>
@@ -50,7 +50,7 @@
 		else
 		{
 			<form asp-action="AddPatient">
-				<input type="submit" name="button" value="добавить в базу нового пациента" />
+					<input class = "loginbuttonwide" type="submit" name="button" value="добавить в базу нового пациента" />
 			</form>
 		}
 	</div>
