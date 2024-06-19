@@ -5,6 +5,7 @@ using ShizUslugi.Interfaces;
 using ShizUslugi.ViewModels;
 using System.Reflection.Metadata.Ecma335;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.EntityFrameworkCore;
 namespace ShizUslugi.Controllers
 {
 	public class AdminController : Controller
@@ -22,6 +23,24 @@ namespace ShizUslugi.Controllers
 			model.doctor = StaticStuff.doctor;
 			return View(model);
 		}
+		
+		public IActionResult PersonalCab()
+		{
+			Account account = _adminRepository.GetAccountById(StaticStuff.doctor.accountid);
+			return View(account);
+		}
+
+		public IActionResult Logout()
+		{
+			StaticStuff.patient = null;
+			StaticStuff.doctor = null;
+			StaticStuff.status = false;
+			StaticStuff.doctormodel = null;
+			StaticStuff.alldiagnoses = null;
+			StaticStuff.adminmodel = null;
+			return RedirectToAction("Index", "Home");
+		}
+
 		public IActionResult Patients()
 		{
 			AllAdminViewModel model = StaticStuff.adminmodel == null ? new AllAdminViewModel() : StaticStuff.adminmodel;
