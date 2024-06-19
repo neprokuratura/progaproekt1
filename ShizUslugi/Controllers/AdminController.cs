@@ -16,6 +16,7 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Index()
 		{
+
 			StaticStuff.alldiagnoses = _adminRepository.GetAllDiagnoses().ToList();
 			AllAdminViewModel model = new AllAdminViewModel();
 			model.doctor = StaticStuff.doctor;
@@ -313,6 +314,8 @@ namespace ShizUslugi.Controllers
 			{
 				model.schedules = _adminRepository.GetSchedule(model.doctor.id, model.patient.id).ToList();
 			}
+			if(model.schedules != null)
+			model.schedules = model.schedules.OrderBy(s => s.starttime).ToList();
 			return View(model);
 		}
 	    public IActionResult ScheduleEdit(AllAdminViewModel model)
