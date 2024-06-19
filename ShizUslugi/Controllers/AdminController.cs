@@ -40,7 +40,7 @@ namespace ShizUslugi.Controllers
 		[HttpPost]
 		public IActionResult Patients(AllAdminViewModel model)
 		{
-		  if(_adminRepository.GetAccountsByLogin(model.account.login).Any())
+			if(_adminRepository.GetAccountsByLogin(model.account.login).Any())
 			{
 				model.IsUserExisting = true;
 				model.IsFieldEmpty = false;
@@ -259,6 +259,7 @@ namespace ShizUslugi.Controllers
 		{
 			if (model.doctor == null)
 				model = StaticStuff.adminmodel;
+			model.doctor = _adminRepository.GetDoctorById(model.doctor.id);
 			model.patients = _adminRepository.GetPatientsByDoctorId(model.doctor.id).ToList();
 			model.chambers = _adminRepository.GetAllChambers().ToList();
 			model.allpatients = _adminRepository.GetAllPatients().ToList();

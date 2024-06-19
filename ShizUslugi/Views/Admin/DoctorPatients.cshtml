@@ -27,7 +27,9 @@
 	</div>
 </div>
 <a asp-action = "MyPatients" class ="backbutton">&lt;-Назад</a>
-<br/>
+<div class = "Greetings">
+		<h1> Пациенты врача @Model.doctor.surname @Model.doctor.name @Model.doctor.thirdname</h1>
+	</div>
 @if (Model.HasPatient)
 {
 	<p>У врача уже назначен этот пациент!</p>

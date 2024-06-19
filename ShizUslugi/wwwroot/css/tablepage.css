@@ -222,3 +222,10 @@ tr td .changeparametersbutton {
     .loginbutton:active {
         background-color: #1948E1;
     }
+
+.Greetings h1 {
+    color: #FF4700;
+    font-family: "Nunito Medium";
+    left: 15px;
+    top: 70px
+}
