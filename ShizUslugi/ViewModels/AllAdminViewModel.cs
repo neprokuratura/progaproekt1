@@ -15,5 +15,6 @@ namespace ShizUslugi.ViewModels
 		public Account account { get; set; }
 		public List<Patient> allpatients { get; set; }
 		public bool HasPatient { get; set; }
+		public bool NoneSchedule { get; set; }
 	}
 }

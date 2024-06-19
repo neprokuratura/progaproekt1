@@ -12,6 +12,9 @@ namespace ShizUslugi.Interfaces
 		IEnumerable<Patient> GetPatientsBySurname(string surname);
 		IEnumerable<Patient> GetAllPatientsInChamber(int chamberid);
 		IEnumerable<Patient> GetPatientsByDoctorId(int doctorid);
+		IEnumerable<Schedule> GetPatientSchedule(int patientid);
+		IEnumerable<Schedule> GetDoctorSchedule(int doctorid);
+		IEnumerable<Schedule> GetSchedule(int doctorid, int patientid);
 		Chamber GetChamberById(int id);
 		Account GetAccountById(int id);
 		Patient GetPatientById(int id);

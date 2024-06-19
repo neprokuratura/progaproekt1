@@ -1,0 +1,58 @@
+﻿@using ShizUslugi.ViewModels;
+@model AllAdminViewModel;
+
+<form asp-action="Schedule" method="get">
+Врач:
+<select asp-for="doctor.id">
+    <option value="0">любой</option>
+    @foreach(Doctor doctor in Model.doctors){
+        <option value="@doctor.id">@doctor.surname @doctor.name[0]. @if (doctor.thirdname != null) {<p>@doctor.thirdname[0].</p>}</option>
+    }
+</select>
+Пациент:
+<select asp-for="patient.id">
+    <option value="0">любой</option>
+    @foreach (Patient patient in Model.patients)
+    {
+        <option value="@patient.id">@patient.surname @patient.name[0]. @if (patient.thirdname != null){<p>@patient.thirdname[0].</p>}</option>
+    }
+</select>
+<input name="button" type="submit" value="Найти расписание" />
+</form>
+<input name="button" type ="submit" value="Добавить активность в расписание" />
+@if (!Model.NoneSchedule)
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Начало</th>
+				<th>Конец</th>
+				<th>Активность</th>
+				<th>Имя врача</th>
+				<th>Имя пациента</th>
+			</tr>
+		<tbody>
+				@foreach (Schedule schedule in Model.schedules)
+				{
+				<tr>
+					<td>
+							@schedule.starttime
+					</td>
+					<td>
+							@schedule.endtime
+					</td>
+					<td>
+							@schedule.action
+					</td>
+					<td>
+							@schedule.doctor.surname @schedule.doctor.name[0]. @if (schedule.doctor.thirdname != null){<span>@schedule.doctor.thirdname[0].</span>}
+					</td>
+					<td>
+							@schedule.patient.surname @schedule.patient.name[0]. @if (schedule.patient.thirdname != null){<span>@schedule.patient.thirdname[0].</span>}
+					</td>
+				</tr>
+				}
+		</tbody>
+		</thead>
+	</table>
+}

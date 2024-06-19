@@ -78,6 +78,18 @@ namespace ShizUslugi.Repository
 		{
 			return _context.account.Where(a => a.login == login).ToList();
 		}
+		public IEnumerable<Schedule> GetPatientSchedule(int patientid)
+		{
+			return _context.schedule.Where(s => s.patientid == patientid).ToList();
+		}
+		public IEnumerable<Schedule> GetDoctorSchedule(int doctorid)
+		{
+			return _context.schedule.Where(s => s.doctorid == doctorid).ToList();
+		}
+		public IEnumerable<Schedule> GetSchedule(int doctorid, int patientid)
+		{
+			return _context.schedule.Where(s => s.doctorid == doctorid && s.patientid == patientid).ToList();
+		}
 		public bool IsConnectionExisting(int doctorid, int patientid)
 		{
 			return _context.doctor_and_patient.Where(dp => dp.doctorid == doctorid && dp.patientid == patientid).Any();

@@ -47,7 +47,7 @@
 						@schedule.action
 				</td>
 				<td>
-						@schedule.patient.surname @schedule.patient.name[0]. @schedule.patient.thirdname[0].
+							@schedule.patient.surname @schedule.patient.name[0]. @if (schedule.patient.thirdname != null){<span>@schedule.patient.thirdname[0].</span>}
 				</td>
 			</tr>
 			}

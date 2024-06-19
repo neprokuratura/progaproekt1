@@ -286,6 +286,28 @@ namespace ShizUslugi.Controllers
 			StaticStuff.adminmodel = model;
 			return RedirectToAction("DoctorPatients");
 		}
+		public IActionResult Schedule(AllAdminViewModel model)
+		{
+			model.doctors = _adminRepository.GetAllDoctors().ToList();
+			model.patients = _adminRepository.GetAllPatients().ToList();
+			if(model.doctor == null || model.patient == null? true:model.doctor.id == 0 && model.patient.id == 0)
+			{
+				model.NoneSchedule = true;
+			}
+			else if(model.doctor.id == 0 && model.patient.id != 0)
+			{
+				model.schedules = _adminRepository.GetPatientSchedule(model.patient.id).ToList();
+			}
+			else if(model.doctor.id != 0 && model.patient.id == 0)
+			{
+				model.schedules = _adminRepository.GetDoctorSchedule(model.doctor.id).ToList();
+			}
+			else
+			{
+				model.schedules = _adminRepository.GetSchedule(model.doctor.id, model.patient.id).ToList();
+			}
+			return View(model);
+		}
 	}
 	
 }
