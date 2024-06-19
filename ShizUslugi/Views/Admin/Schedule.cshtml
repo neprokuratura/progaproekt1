@@ -1,14 +1,43 @@
 ﻿@using ShizUslugi.ViewModels;
 @model AllAdminViewModel;
+@{
+	Layout = null;
+}
+<body>
+	<link rel="stylesheet" href="~/css/tablepage.css" asp-append-version="true" />
+	<div class = "navbar">
+	<div class = "navbarlogo">
+	<img src="https://i.ibb.co/T4TT0KL/Chebur-Uslugi.png" alt="" width = "90"/>
+	<a>ШизУслуги</a>
+	</div>
+		<div class = "button1">
+		<a asp-action="Index" class = "buttontext">Главная</a>
+	</div>
+	<div class = "button2">
+		<a asp-action = "Schedule" class = "buttontext">Расписание</a>
+	</div>
+	<div class = "button3">
+		<a asp-action = "Patients" class = "buttontext">Пациенты</a>
+	</div>
+	<div class = "button4">
+		<a asp-action="Doctors" class = "buttontext">Врачи</a>
+	</div>
+	<div class = "mypagenavlink">
+	<a asp-action="PersonalCab">Личный кабинет</a>
+	</div>
+</div>
+<a asp-action = "Index" class ="backbutton">&lt;-Назад</a>
 <div>
 	@if (Model.IsInputActivate)
 	{
 		<form asp-action="AddScheduleSubmit" method="post">
-			Начало:<input class="newpatientfield" asp-for="schedule.starttime" type="time" />
-			Конец:<input class="newpatientfield" asp-for="schedule.endtime" type="time" />
+					<p class = "text">Начало:</p>
+				<input class="newpatientfield" asp-for="schedule.starttime" type="time" />
+					<p class = "text">Конец</p>
+			<input class="newpatientfield" asp-for="schedule.endtime" type="time" />
 			<input class="newpatientfield" asp-for="schedule.action" type="text" placeholder="Активность" />
-			Врач:
-			<select asp-for="schedule.doctorid">
+						<p class = "text">Врач:</p>
+				<select class="newpatientfield" asp-for="schedule.doctorid">
 				@foreach (Doctor doctor in Model.doctors)
 				{
 					<option value="@doctor.id">
@@ -19,8 +48,8 @@
 					</option>
 				}
 			</select>
-			Пациент:
-			<select asp-for="schedule.patientid">
+				<p class = "text">Пациент:</p>
+				<select class="newpatientfield" asp-for="schedule.patientid">
 				@foreach (Patient patient in Model.patients)
 				{
 					<option value="@patient.id">
@@ -57,50 +86,50 @@
 				<input asp-for="doctor.id" class="kostil" style="visibility:hidden" readonly="true" , value="@Model.doctor.id" , type="text" />
 				<input asp-for="patient.id" class="kostil" style="visibility:hidden" readonly="true" , value="@Model.patient.id" , type="text" />
 			}
-			<input class="loginbuttonwide" type="submit" name="button" value="добавить новую активность в расписание" />
+			<input class="loginbuttonwide" type="submit" name="button" value="добавить активность в расписание" />
 		</form>
 	}
 </div>
 <form asp-action="Schedule" method="get">
-Врач:
-<select asp-for="doctor.id">
+<p class = "text">Врач:</p>
+<select class = "newpatientfield" asp-for="doctor.id">
     <option value="0">любой</option>
     @foreach(Doctor doctor in Model.doctors){
         <option value="@doctor.id">@doctor.surname @doctor.name[0]. @if (doctor.thirdname != null) {<p>@doctor.thirdname[0].</p>}</option>
     }
 </select>
-Пациент:
-<select asp-for="patient.id">
+<p class = "text">Пациент:</p>
+<select class = "newpatientfield" asp-for="patient.id">
     <option value="0">любой</option>
     @foreach (Patient patient in Model.patients)
     {
-        <option value="@patient.id">@patient.surname @patient.name[0]. @if (patient.thirdname != null){<p>@patient.thirdname[0].</p>}</option>
+        <option value="@patient.id">@patient.surname @patient.name[0]. @if (patient.thirdname != null) {<p>@patient.thirdname[0].</p>}</option>
     }
 </select>
-<input name="button" type="submit" value="Найти расписание" />
+<input class = "loginbutton" name="button" type = "submit" value = "Найти расписание" />
 </form>
 
 @if (Model.IsFieldOverfilled)
 {
-	<div>Превышен размер поля "@Model.FieldName"</div>
+		<p>Превышен размер поля "@Model.FieldName"</p>
 }
 @if (Model.IsFieldEmpty)
 {
-	<div>Поле "@Model.FieldName" не должно быть пустым</div>
+		<p>Поле "@Model.FieldName" не должно быть пустым</p>
 }
 @if (Model.IsNotConnected)
 {
-	<div>Врачу не назнначен данный пациент</div>
+		<p>Врачу не назнначен данный пациент</p>
 }
 else if (Model.IsTimeIncorrect)
 {
-	<div>Время задано неверно</div>
+		<p>Время задано неверно</p>
 }
 else if (Model.IsTimeNotFree)
 {
-	<div>Временной промежуток занят</div>
+		<p>Временной промежуток занят</p>
 }
-
+<br />
 @if (!Model.NoneSchedule)
 {
 	<table class="table">
@@ -228,4 +257,5 @@ else if (Model.IsTimeNotFree)
 		</tbody>
 		</thead>
 	</table>
-}
+	}
+</body>

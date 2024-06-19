@@ -229,3 +229,9 @@ tr td .changeparametersbutton {
     left: 15px;
     top: 70px
 }
+
+.text {
+    color: #FF4700;
+    font-family: "Nunito Medium";
+    font-size: 17pt;
+}

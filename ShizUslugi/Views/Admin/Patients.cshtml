@@ -14,7 +14,7 @@
 			<a asp-action="Index" class = "buttontext">Главная</a>
 		</div>
 		<div class = "button2">
-			<a asp-action = "MySchedule"class = "buttontext">Расписание</a>
+			<a asp-action = "Schedule" class = "buttontext">Расписание</a>
 		</div>
 		<div class = "button3">
 			<a asp-action = "Patients" class = "buttontext">Пациенты</a>
@@ -26,7 +26,7 @@
 		<a asp-action="PersonalCab">Личный кабинет</a>
 		</div>
 	</div>
-	<a asp-action = "MyPatients" class ="backbutton">&lt;-Назад</a>
+	<a asp-action = "Index" class ="backbutton">&lt;-Назад</a>
 	<div>
 		@if (Model.IsInputActivate)
 		{
