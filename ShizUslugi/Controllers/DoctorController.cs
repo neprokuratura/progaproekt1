@@ -61,7 +61,7 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult PatientDiagnoses(AllDoctorViewModel model)
 		{
-			if(StaticStuff.status)
+			if(StaticStuff.status && _context.patient.Where(p => p.id == model.patient.id).ToList().Any())
 			{
 				if (model.patient == null)
 					model = StaticStuff.doctormodel;
@@ -116,11 +116,15 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult PatientChamber(AllDoctorViewModel model)
 		{
-			int chamber_id = _context.patient.Where(p => p.id == model.patient.id).ToList()[0].chamberid;
-			model.chamber = _context.chamber.Where(c => c.id == chamber_id).ToList()[0];
-			model.patients = _context.patient.Where(p => p.chamberid == chamber_id && p.id != model.patient.id).ToList();
-			model.patient = _context.patient.Where(p => p.id == model.patient.id).ToList()[0];
-			return View(model);
+			if (_context.patient.Where(p => p.id == model.patient.id).ToList().Any())
+			{
+				int chamber_id = _context.patient.Where(p => p.id == model.patient.id).ToList()[0].chamberid;
+				model.chamber = _context.chamber.Where(c => c.id == chamber_id).ToList()[0];
+				model.patients = _context.patient.Where(p => p.chamberid == chamber_id && p.id != model.patient.id).ToList();
+				model.patient = _context.patient.Where(p => p.id == model.patient.id).ToList()[0];
+				return View(model);
+			}
+			else return RedirectToAction("PatientWarning");
 		}
 		public IActionResult PersonalCab()
 		{
