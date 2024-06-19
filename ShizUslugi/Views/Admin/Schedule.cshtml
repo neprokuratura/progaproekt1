@@ -20,6 +20,27 @@
 <input name="button" type="submit" value="Найти расписание" />
 </form>
 <input name="button" type ="submit" value="Добавить активность в расписание" />
+@if (Model.IsFieldOverfilled)
+{
+	<div>Превышен размер поля "@Model.FieldName"</div>
+}
+@if (Model.IsFieldEmpty)
+{
+	<div>Поле "@Model.FieldName" не должно быть пустым</div>
+}
+@if (Model.IsNotConnected)
+{
+	<div>Врачу не назнначен данный пациент</div>
+}
+else if (Model.IsTimeIncorrect)
+{
+	<div>Время задано неверно</div>
+}
+else if (Model.IsTimeNotFree)
+{
+	<div>Временной промежуток занят</div>
+}
+
 @if (!Model.NoneSchedule)
 {
 	<table class="table">
@@ -35,21 +56,113 @@
 				@foreach (Schedule schedule in Model.schedules)
 				{
 				<tr>
+				<form asp-action="ScheduleEditSubmit" method="post">
 					<td>
+							@if (Model.IsEdit && schedule.id == Model.schedule.id)
+							{
+								<input asp-for="schedule.starttime" type="time" value="@schedule.starttime" />
+							}
+							else
 							@schedule.starttime
 					</td>
 					<td>
+							@if (Model.IsEdit && schedule.id == Model.schedule.id)
+							{
+							<input asp-for="schedule.endtime" type="time" value="@schedule.endtime" />
+							}
+							else
 							@schedule.endtime
 					</td>
 					<td>
+							@if (Model.IsEdit && schedule.id == Model.schedule.id)
+							{
+							<input asp-for="schedule.action" type="text" value="@schedule.action" />
+							}
+							else
 							@schedule.action
 					</td>
 					<td>
-							@schedule.doctor.surname @schedule.doctor.name[0]. @if (schedule.doctor.thirdname != null){<span>@schedule.doctor.thirdname[0].</span>}
+							@if (Model.IsEdit && schedule.id == Model.schedule.id)
+							{
+								<select asp-for="schedule.doctorid">
+									@foreach (Doctor doctor in Model.doctors)
+									{
+										if(doctor.id == Model.schedule.doctorid)
+										{
+										<option value="@doctor.id" selected> @doctor.surname @doctor.name[0]. @if (doctor.thirdname != null){<p>@doctor.thirdname[0].</p>}
+										</option>
+										}
+										else{
+										<option value="@doctor.id">
+											@doctor.surname @doctor.name[0]. @if (doctor.thirdname != null){<p>@doctor.thirdname[0].</p>}
+										</option>
+										}
+									}
+								</select>
+							}
+							else
+							{
+								@schedule.doctor.surname <span>@schedule.doctor.name[0].</span>  @if (schedule.doctor.thirdname != null)
+								{
+									<span>@schedule.doctor.thirdname[0].</span>
+								}
+							}
 					</td>
 					<td>
-							@schedule.patient.surname @schedule.patient.name[0]. @if (schedule.patient.thirdname != null){<span>@schedule.patient.thirdname[0].</span>}
-					</td>
+							@if (Model.IsEdit && schedule.id == Model.schedule.id)
+							{
+							<select asp-for="schedule.patientid">
+									@foreach (Patient patient in Model.patients)
+									{
+										if (patient.id == Model.schedule.patientid)
+										{
+										<option value="@patient.id" selected>
+												@patient.surname @patient.name[0]. @if (patient.thirdname != null){<p>@patient.thirdname[0].</p>}
+										</option>
+										}
+										else
+										{
+										<option value="@patient.id">
+												@patient.surname @patient.name[0]. @if (patient.thirdname != null){<p>@patient.thirdname[0].</p>}
+										</option>
+										}
+									}
+							</select>
+							}
+							else
+							{
+								@schedule.patient.surname <span>@schedule.patient.name[0].</span> @if (schedule.patient.thirdname != null)
+								{
+									<span>@schedule.patient.thirdname[0].</span>
+								}
+							}
+						</td>
+					<td>
+							@if (Model.IsEdit && schedule.id == Model.schedule.id)
+							{
+							   <input asp-for="doctor.id" class="kostil" style="visibility:hidden" readonly="true" , value="@Model.doctor.id" , type="text" />
+							   <input asp-for="patient.id" class="kostil" style="visibility:hidden" readonly="true" , value="@Model.patient.id" , type="text" />
+							   <input asp-for="schedule.id" class="kostil" style="visibility:hidden" readonly="true" , value="@schedule.id" , type="text" />
+								<input name="button" type="submit" value="сохранить" />
+							}
+							else
+							{
+							<form asp-action="Index"><input name="button" type="submit" style="visibility:hidden" class="kostil" /></form>
+								<form asp-action="ScheduleEdit" method="get">
+									<input asp-for="schedule.id" class="kostil" style="visibility:hidden" readonly="true" , value="@schedule.id" , type="text" />
+									@if (Model.doctor != null)
+									{
+										<input asp-for="doctor.id" class="kostil" style="visibility:hidden" readonly="true" , value="@Model.doctor.id" , type="text" />
+									}
+									@if (Model.patient != null)
+									{
+										<input asp-for="patient.id" class="kostil" style="visibility:hidden" readonly="true" , value="@Model.patient.id" , type="text" />
+									}
+									<input name="button" type="submit" value="изменить" />
+								</form>
+							}
+						</td>
+					</form>
 				</tr>
 				}
 		</tbody>

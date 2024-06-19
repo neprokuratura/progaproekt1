@@ -19,11 +19,13 @@ namespace ShizUslugi.Interfaces
 		Account GetAccountById(int id);
 		Patient GetPatientById(int id);
 		Doctor GetDoctorById(int id);
+		Schedule GetScheduleById(int id);
 		Doctor_Patient_id GetDoctor_Patient_id(int doctorid, int patientid);
 		IEnumerable<Account> GetAccountsByLogin(string login);
 		bool IsConnectionExisting(int doctorid, int patientid);
 		bool UpdatePatient(Patient patient);
 		bool UpdateDoctor(Doctor doctor);
+		bool UpdateSchedule(Schedule schedule);
 		bool AddPatient(Patient patient);
 		bool AddAccount(Account account);
 		bool AddSchedule(Schedule schedule);

@@ -70,6 +70,10 @@ namespace ShizUslugi.Repository
 		{
 			return _context.doctor.Where(d => d.id == id).ToList()[0];
 		}
+		public Schedule GetScheduleById(int id)
+		{
+			return _context.schedule.Where(s => s.id == id).ToList()[0];
+		}
 		public Doctor_Patient_id GetDoctor_Patient_id(int doctorid, int patientid)
 		{
 			return _context.doctor_and_patient.Where(dp => dp.doctorid == doctorid && dp.patientid == patientid).ToList()[0];
@@ -102,6 +106,11 @@ namespace ShizUslugi.Repository
 		public bool UpdateDoctor(Doctor doctor)
 		{
 			_context.doctor.Update(doctor);
+			return Save();
+		}
+		public bool UpdateSchedule(Schedule schedule)
+		{
+			_context.schedule.Update(schedule);
 			return Save();
 		}
 		public bool AddAccount(Account account)

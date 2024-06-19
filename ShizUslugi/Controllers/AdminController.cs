@@ -4,6 +4,7 @@ using ShizUslugi.Repository;
 using ShizUslugi.Interfaces;
 using ShizUslugi.ViewModels;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 namespace ShizUslugi.Controllers
 {
 	public class AdminController : Controller
@@ -22,7 +23,7 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Patients()
 		{
-			AllAdminViewModel model = StaticStuff.adminmodel == null? new AllAdminViewModel() : StaticStuff.adminmodel;
+			AllAdminViewModel model = StaticStuff.adminmodel == null ? new AllAdminViewModel() : StaticStuff.adminmodel;
 			model.patients = _adminRepository.GetAllPatients().ToList();
 			model.chambers = _adminRepository.GetAllChambers().ToList();
 			/*if (StaticStuff.adminmodel != null)
@@ -40,7 +41,7 @@ namespace ShizUslugi.Controllers
 		[HttpPost]
 		public IActionResult Patients(AllAdminViewModel model)
 		{
-			if(_adminRepository.GetAccountsByLogin(model.account.login).Any())
+			if (_adminRepository.GetAccountsByLogin(model.account.login).Any())
 			{
 				model.IsUserExisting = true;
 				model.IsFieldEmpty = false;
@@ -62,12 +63,12 @@ namespace ShizUslugi.Controllers
 				}
 				else if (model.patient.surname == null)
 				{
-				    model.FieldName = "Фамилия";
+					model.FieldName = "Фамилия";
 				}
 				else
 				{
 					model.IsFieldEmpty = false;
-					model.IsFieldOverfilled= true;
+					model.IsFieldOverfilled = true;
 					if (model.account.login.Length > 20)
 					{
 						model.FieldName = "Логин";
@@ -108,10 +109,10 @@ namespace ShizUslugi.Controllers
 							});
 						}
 					}
-					
+
 				}
 			}
-		    model.IsInputActivate = true;
+			model.IsInputActivate = true;
 			model.patients = _adminRepository.GetAllPatients().ToList();
 			model.chambers = _adminRepository.GetAllChambers().ToList();
 			return View(model);
@@ -120,6 +121,7 @@ namespace ShizUslugi.Controllers
 		public IActionResult PatientsEdit(AllAdminViewModel model)
 		{
 			model.IsEdit = true;
+			model.patient = _adminRepository.GetPatientById(model.patient.id);
 			StaticStuff.adminmodel = model;
 			return RedirectToAction("Patients");
 		}
@@ -268,7 +270,7 @@ namespace ShizUslugi.Controllers
 		[HttpPost]
 		public IActionResult AddPatientDoctor(AllAdminViewModel model)
 		{
-			if(_adminRepository.IsConnectionExisting(model.doctor.id, model.patient.id))
+			if (_adminRepository.IsConnectionExisting(model.doctor.id, model.patient.id))
 			{
 				model.HasPatient = true;
 			}
@@ -289,6 +291,10 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Schedule(AllAdminViewModel model)
 		{
+			if ((model.patient == null||model.doctor ==null) && StaticStuff.adminmodel != null)
+			{
+				model = StaticStuff.adminmodel;
+			}
 			model.doctors = _adminRepository.GetAllDoctors().ToList();
 			model.patients = _adminRepository.GetAllPatients().ToList();
 			if(model.doctor == null || model.patient == null? true:model.doctor.id == 0 && model.patient.id == 0)
@@ -308,6 +314,70 @@ namespace ShizUslugi.Controllers
 				model.schedules = _adminRepository.GetSchedule(model.doctor.id, model.patient.id).ToList();
 			}
 			return View(model);
+		}
+	    public IActionResult ScheduleEdit(AllAdminViewModel model)
+		{
+			model.IsEdit = true;
+			model.schedule = _adminRepository.GetScheduleById(model.schedule.id);
+			StaticStuff.adminmodel = model;
+			return RedirectToAction("Schedule");
+		}
+		[HttpPost]
+		public IActionResult ScheduleEditSubmit(AllAdminViewModel model)
+		{
+			model.IsEdit = true;
+			if (model.schedule.action == null) {
+				model.IsFieldEmpty = true;
+				model.FieldName = "Активность";
+			}
+			else
+			{
+				if (model.schedule.action.Length > 100)
+				{
+					model.IsFieldOverfilled = true;
+					model.FieldName = "Активность";
+				}
+				else
+				{
+					model.IsTimeIncorrect = model.schedule.starttime >= model.schedule.endtime;
+					model.IsNotConnected = !_adminRepository.IsConnectionExisting(model.schedule.doctorid, model.schedule.patientid);
+					List<Schedule> doctor_schedule = _adminRepository.GetDoctorSchedule(model.schedule.doctorid).ToList();
+					List<Schedule> patient_schedule = _adminRepository.GetPatientSchedule(model.schedule.patientid).ToList();
+					foreach(Schedule schedule in doctor_schedule)
+					{
+						if(!(schedule.starttime < model.schedule.starttime && schedule.endtime < model.schedule.starttime || 
+							schedule.starttime > model.schedule.endtime) && schedule.id != model.schedule.id)
+						{
+							model.IsTimeNotFree = true;
+						}
+					}
+					foreach (Schedule schedule in patient_schedule)
+					{
+						if (!(schedule.starttime < model.schedule.starttime && schedule.endtime < model.schedule.starttime ||
+							schedule.starttime > model.schedule.endtime) && schedule.id != model.schedule.id)
+						{
+							model.IsTimeNotFree = true;
+						}
+					}
+					if (!model.IsTimeIncorrect && !model.IsNotConnected && !model.IsTimeNotFree)
+					{
+						Schedule schedule = _adminRepository.GetScheduleById(model.schedule.id);
+						Doctor doctor = _adminRepository.GetDoctorById(schedule.doctorid);
+						Patient patient = _adminRepository.GetPatientById(schedule.patientid);
+						schedule.starttime = model.schedule.starttime;
+						schedule.endtime = model.schedule.endtime;
+						schedule.action = model.schedule.action;
+						schedule.doctorid = model.schedule.doctorid;
+						schedule.patientid = model.schedule.patientid;
+						schedule.doctor = doctor;
+						schedule.patient = patient;
+						_adminRepository.UpdateSchedule(schedule);
+						model.IsEdit = false;
+					}
+				}
+			}
+			StaticStuff.adminmodel = model;
+			return RedirectToAction("Schedule");
 		}
 	}
 	

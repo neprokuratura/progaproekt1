@@ -14,7 +14,11 @@ namespace ShizUslugi.ViewModels
 		public List<Doctor> doctors { get; set; }
 		public Account account { get; set; }
 		public List<Patient> allpatients { get; set; }
+		public Schedule schedule { get; set; }
 		public bool HasPatient { get; set; }
 		public bool NoneSchedule { get; set; }
+		public bool IsTimeIncorrect {  get; set; }
+		public bool IsNotConnected { get; set; }
+		public bool IsTimeNotFree { get; set; }
 	}
 }

@@ -114,9 +114,17 @@
 								<select asp-for = "patient.chamberid">
 									@foreach (Chamber chamber in Model.chambers)
 									{
-										<option value ="@chamber.id">
+											if(chamber.id == Model.patient.chamberid)
+											{
+										    <option value="@chamber.id" selected>
 											@chamber.type
-										</option>
+										    </option>
+											}
+											else{
+											<option value ="@chamber.id">
+											@chamber.type
+										    </option>
+											}
 									}
 								</select>
 							}
