@@ -16,6 +16,7 @@ namespace ShizUslugi.Controllers
 			if (StaticStuff.status)
 			{
 				StaticStuff.alldiagnoses = _context.diagnosis.ToList();
+				StaticStuff.adminmodel = null;
 				AllDoctorViewModel model = new AllDoctorViewModel();
 				model.doctor = StaticStuff.doctor;
 				return View(model);

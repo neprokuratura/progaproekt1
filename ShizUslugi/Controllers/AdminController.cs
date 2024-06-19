@@ -17,6 +17,7 @@ namespace ShizUslugi.Controllers
 		public IActionResult Index()
 		{
 			StaticStuff.alldiagnoses = _adminRepository.GetAllDiagnoses().ToList();
+			StaticStuff.adminmodel = new AllAdminViewModel();
 			AllAdminViewModel model = new AllAdminViewModel();
 			model.doctor = StaticStuff.doctor;
 			return View(model);
