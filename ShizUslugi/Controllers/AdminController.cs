@@ -16,29 +16,36 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Index()
 		{
-
-			StaticStuff.alldiagnoses = _adminRepository.GetAllDiagnoses().ToList();
-			StaticStuff.adminmodel = new AllAdminViewModel();
-			AllAdminViewModel model = new AllAdminViewModel();
-			model.doctor = StaticStuff.doctor;
-			return View(model);
+			if (StaticStuff.status && StaticStuff.doctor == null ? false : StaticStuff.doctor.accountid == StaticStuff.adminid)
+			{
+				StaticStuff.alldiagnoses = _adminRepository.GetAllDiagnoses().ToList();
+				StaticStuff.adminmodel = new AllAdminViewModel();
+				AllAdminViewModel model = new AllAdminViewModel();
+				model.doctor = StaticStuff.doctor;
+				return View(model);
+			}
+			else return RedirectToAction("PatientWarning", "Doctor");
 		}
 		public IActionResult Patients()
 		{
-			AllAdminViewModel model = StaticStuff.adminmodel == null ? new AllAdminViewModel() : StaticStuff.adminmodel;
-			model.patients = _adminRepository.GetAllPatients().ToList();
-			model.chambers = _adminRepository.GetAllChambers().ToList();
-			/*if (StaticStuff.adminmodel != null)
+			if (StaticStuff.status && StaticStuff.doctor == null ? false : StaticStuff.doctor.accountid == StaticStuff.adminid)
 			{
-				model.IsEdit = StaticStuff.adminmodel.IsEdit;
-				model.IsChamberOverfilled = StaticStuff.adminmodel.IsChamberOverfilled;
-				model.IsInputActivate = StaticStuff.adminmodel.IsInputActivate;
-				model.IsFieldEmpty = StaticStuff.adminmodel.IsFieldEmpty;
-				model.IsFieldOverfilled = StaticStuff.adminmodel.IsFieldOverfilled;
-				model.FieldName = StaticStuff.adminmodel.FieldName;
-				model.patient = StaticStuff.adminmodel.patient;
-			}*/
-			return View(model);
+				AllAdminViewModel model = StaticStuff.adminmodel == null ? new AllAdminViewModel() : StaticStuff.adminmodel;
+				model.patients = _adminRepository.GetAllPatients().ToList();
+				model.chambers = _adminRepository.GetAllChambers().ToList();
+				/*if (StaticStuff.adminmodel != null)
+				{
+					model.IsEdit = StaticStuff.adminmodel.IsEdit;
+					model.IsChamberOverfilled = StaticStuff.adminmodel.IsChamberOverfilled;
+					model.IsInputActivate = StaticStuff.adminmodel.IsInputActivate;
+					model.IsFieldEmpty = StaticStuff.adminmodel.IsFieldEmpty;
+					model.IsFieldOverfilled = StaticStuff.adminmodel.IsFieldOverfilled;
+					model.FieldName = StaticStuff.adminmodel.FieldName;
+					model.patient = StaticStuff.adminmodel.patient;
+				}*/
+				return View(model);
+			}
+			else return RedirectToAction("PatientWarning", "Doctor");
 		}
 		[HttpPost]
 		public IActionResult Patients(AllAdminViewModel model)
@@ -187,9 +194,13 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Doctors()
 		{
-			AllAdminViewModel model = StaticStuff.adminmodel == null ? new AllAdminViewModel() : StaticStuff.adminmodel;
-			model.doctors = _adminRepository.GetAllDoctors().ToList();
-			return View(model);
+			if (StaticStuff.status && StaticStuff.doctor == null ? false : StaticStuff.doctor.accountid == StaticStuff.adminid)
+			{
+				AllAdminViewModel model = StaticStuff.adminmodel == null ? new AllAdminViewModel() : StaticStuff.adminmodel;
+				model.doctors = _adminRepository.GetAllDoctors().ToList();
+				return View(model);
+			}
+			else return RedirectToAction("PatientWarning", "Doctor");
 		}
 		public IActionResult DoctorsEdit(AllAdminViewModel model)
 		{
@@ -293,31 +304,35 @@ namespace ShizUslugi.Controllers
 		}
 		public IActionResult Schedule(AllAdminViewModel model)
 		{
-			if ((model.patient == null||model.doctor ==null) && StaticStuff.adminmodel != null)
+			if (StaticStuff.status && StaticStuff.doctor == null ? false : StaticStuff.doctor.accountid == StaticStuff.adminid)
 			{
-				model = StaticStuff.adminmodel;
+				if ((model.patient == null || model.doctor == null) && StaticStuff.adminmodel != null)
+				{
+					model = StaticStuff.adminmodel;
+				}
+				model.doctors = _adminRepository.GetAllDoctors().ToList();
+				model.patients = _adminRepository.GetAllPatients().ToList();
+				if (model.doctor == null || model.patient == null ? true : model.doctor.id == 0 && model.patient.id == 0)
+				{
+					model.NoneSchedule = true;
+				}
+				else if (model.doctor.id == 0 && model.patient.id != 0)
+				{
+					model.schedules = _adminRepository.GetPatientSchedule(model.patient.id).ToList();
+				}
+				else if (model.doctor.id != 0 && model.patient.id == 0)
+				{
+					model.schedules = _adminRepository.GetDoctorSchedule(model.doctor.id).ToList();
+				}
+				else
+				{
+					model.schedules = _adminRepository.GetSchedule(model.doctor.id, model.patient.id).ToList();
+				}
+				if (model.schedules != null)
+					model.schedules = model.schedules.OrderBy(s => s.starttime).ToList();
+				return View(model);
 			}
-			model.doctors = _adminRepository.GetAllDoctors().ToList();
-			model.patients = _adminRepository.GetAllPatients().ToList();
-			if(model.doctor == null || model.patient == null? true:model.doctor.id == 0 && model.patient.id == 0)
-			{
-				model.NoneSchedule = true;
-			}
-			else if(model.doctor.id == 0 && model.patient.id != 0)
-			{
-				model.schedules = _adminRepository.GetPatientSchedule(model.patient.id).ToList();
-			}
-			else if(model.doctor.id != 0 && model.patient.id == 0)
-			{
-				model.schedules = _adminRepository.GetDoctorSchedule(model.doctor.id).ToList();
-			}
-			else
-			{
-				model.schedules = _adminRepository.GetSchedule(model.doctor.id, model.patient.id).ToList();
-			}
-			if(model.schedules != null)
-			model.schedules = model.schedules.OrderBy(s => s.starttime).ToList();
-			return View(model);
+			else return RedirectToAction("PatientWarning", "Doctor");
 		}
 	    public IActionResult ScheduleEdit(AllAdminViewModel model)
 		{
