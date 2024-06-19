@@ -1,6 +1,66 @@
 ﻿@using ShizUslugi.ViewModels;
 @model AllAdminViewModel;
-
+<div>
+	@if (Model.IsInputActivate)
+	{
+		<form asp-action="AddScheduleSubmit" method="post">
+			Начало:<input class="newpatientfield" asp-for="schedule.starttime" type="time" />
+			Конец:<input class="newpatientfield" asp-for="schedule.endtime" type="time" />
+			<input class="newpatientfield" asp-for="schedule.action" type="text" placeholder="Активность" />
+			Врач:
+			<select asp-for="schedule.doctorid">
+				@foreach (Doctor doctor in Model.doctors)
+				{
+					<option value="@doctor.id">
+						@doctor.surname @doctor.name[0]. @if (doctor.thirdname != null)
+						{
+							<p>@doctor.thirdname[0].</p>
+						}
+					</option>
+				}
+			</select>
+			Пациент:
+			<select asp-for="schedule.patientid">
+				@foreach (Patient patient in Model.patients)
+				{
+					<option value="@patient.id">
+						@patient.surname @patient.name[0]. @if (patient.thirdname != null)
+						{
+							<p>@patient.thirdname[0].</p>
+						}
+					</option>
+				}
+			</select>
+			@if (Model.doctor == null || Model.patient == null)
+			{
+				<input asp-for="doctor.id" class="kostil" style="visibility:hidden" readonly="true" , value="0" , type="text" />
+				<input asp-for="patient.id" class="kostil" style="visibility:hidden" readonly="true" , value="0" , type="text" />
+			}
+			else
+			{
+				<input asp-for="doctor.id" class="kostil" style="visibility:hidden" readonly="true" , value="@Model.doctor.id" , type="text" />
+				<input asp-for="patient.id" class="kostil" style="visibility:hidden" readonly="true" , value="@Model.patient.id" , type="text" />
+			}
+			<input class="loginbutton" type="submit" name="button" value="добавить" />
+		</form>
+	}
+	else
+	{
+		<form asp-action="AddSchedule" method="get">
+			@if(Model.doctor == null || Model.patient == null)
+			{
+				<input asp-for="doctor.id" class="kostil" style="visibility:hidden" readonly="true" , value="0" , type="text" />
+				<input asp-for="patient.id" class="kostil" style="visibility:hidden" readonly="true" , value="0" , type="text" />
+			}
+			else
+			{
+				<input asp-for="doctor.id" class="kostil" style="visibility:hidden" readonly="true" , value="@Model.doctor.id" , type="text" />
+				<input asp-for="patient.id" class="kostil" style="visibility:hidden" readonly="true" , value="@Model.patient.id" , type="text" />
+			}
+			<input class="loginbuttonwide" type="submit" name="button" value="добавить новую активность в расписание" />
+		</form>
+	}
+</div>
 <form asp-action="Schedule" method="get">
 Врач:
 <select asp-for="doctor.id">
@@ -19,7 +79,7 @@
 </select>
 <input name="button" type="submit" value="Найти расписание" />
 </form>
-<input name="button" type ="submit" value="Добавить активность в расписание" />
+
 @if (Model.IsFieldOverfilled)
 {
 	<div>Превышен размер поля "@Model.FieldName"</div>

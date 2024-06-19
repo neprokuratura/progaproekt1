@@ -379,6 +379,59 @@ namespace ShizUslugi.Controllers
 			StaticStuff.adminmodel = model;
 			return RedirectToAction("Schedule");
 		}
+		public IActionResult AddSchedule(AllAdminViewModel model)
+		{
+			model.IsInputActivate = true;
+			StaticStuff.adminmodel = model;
+			return RedirectToAction("Schedule");
+		}
+		public IActionResult AddScheduleSubmit(AllAdminViewModel model)
+		{
+			model.IsInputActivate=true;
+			if (model.schedule.action == null)
+			{
+				model.IsFieldEmpty = true;
+				model.FieldName = "Активность";
+			}
+			else
+			{
+				if (model.schedule.action.Length > 100)
+				{
+					model.IsFieldOverfilled = true;
+					model.FieldName = "Активность";
+				}
+				else
+				{
+					model.IsTimeIncorrect = model.schedule.starttime >= model.schedule.endtime;
+					model.IsNotConnected = !_adminRepository.IsConnectionExisting(model.schedule.doctorid, model.schedule.patientid);
+					List<Schedule> doctor_schedule = _adminRepository.GetDoctorSchedule(model.schedule.doctorid).ToList();
+					List<Schedule> patient_schedule = _adminRepository.GetPatientSchedule(model.schedule.patientid).ToList();
+					foreach (Schedule schedule in doctor_schedule)
+					{
+						if (!(schedule.starttime < model.schedule.starttime && schedule.endtime < model.schedule.starttime ||
+							schedule.starttime > model.schedule.endtime) && schedule.id != model.schedule.id)
+						{
+							model.IsTimeNotFree = true;
+						}
+					}
+					foreach (Schedule schedule in patient_schedule)
+					{
+						if (!(schedule.starttime < model.schedule.starttime && schedule.endtime < model.schedule.starttime ||
+							schedule.starttime > model.schedule.endtime) && schedule.id != model.schedule.id)
+						{
+							model.IsTimeNotFree = true;
+						}
+					}
+					if (!model.IsTimeIncorrect && !model.IsNotConnected && !model.IsTimeNotFree)
+					{
+						_adminRepository.AddSchedule(model.schedule);
+						model.IsInputActivate = false;
+					}
+				}
+			}
+			StaticStuff.adminmodel = model;
+			return RedirectToAction("Schedule");
+		}
 	}
 	
 }
